@@ -8,23 +8,23 @@ A README.md file (section phase 1) with the description (size, schema, datatypes
 9.36 GB
 
 ### Content
-VendorID: Int
-tpep_pickup_datetime: Date/Time
-tpep_dropoff_datetime: Date/Time
-Passenger_count: Int
-Trip_distance: Float
-PULocationID: Int
-DOLocationID: Int
-RateCodeID: Int
-Store_and_fwd_flag: String
-Payment_type: Int
-Fare_amount: Float
-Extra: Float
-MTA_tax: Float
-Improvement_surcharge: Float
-Tip_amount: Float
-Tolls_amount: Float
-Total_amount: Float
+- VendorID: Int
+- tpep_pickup_datetime: Date/Time
+- tpep_dropoff_datetime: Date/Time
+- Passenger_count: Int
+- Trip_distance: Float
+- PULocationID: Int
+- DOLocationID: Int
+- RateCodeID: Int
+- Store_and_fwd_flag: String
+- Payment_type: Int
+- Fare_amount: Float
+- Extra: Float
+- MTA_tax: Float
+- Improvement_surcharge: Float
+- Tip_amount: Float
+- Tolls_amount: Float
+- Total_amount: Float
 
 
 ## 2e choice: Brewery Operations and Market Analysis Dataset
@@ -34,16 +34,16 @@ Total_amount: Float
 2.62 GB
 
 ### Content
-Brewing Parameters
-Beer Styles and Packaging
-Quality Scores
-Sales Data(USD)
-Supply Chain and Efficiency Metrics
-Applications
-Brewing Process Optimization
-Market Analysis
-Supply Chain Management
-Quality Assessment and Control
-Data Format and Structure
+- Brewing Parameters
+- Beer Styles and Packaging
+- Quality Scores
+- Sales Data(USD)
+- Supply Chain and Efficiency Metrics
+- Applications
+- Brewing Process Optimization
+- Market Analysis
+- Supply Chain Management
+- Quality Assessment and Control
+- Data Format and Structure
 
 ## 3e choice: 
