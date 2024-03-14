@@ -3,6 +3,7 @@
 A README.md file (section phase 1) with the description (size, schema, datatypes, etc) and link of the chosen datasets (First, second and third choice) 
 
 ## 1e choice: Newyork Taxi Trip Data
+https://www.kaggle.com/datasets/microize/newyork-yellow-taxi-trip-data-2020-2019
 
 ### Size
 9.36 GB
@@ -28,7 +29,7 @@ A README.md file (section phase 1) with the description (size, schema, datatypes
 
 
 ## 2e choice: Brewery Operations and Market Analysis Dataset
-[https://www.kaggle.com/datasets/tumanovalexander/nyt-articles-data](https://www.kaggle.com/datasets/ankurnapa/brewery-operations-and-market-analysis-dataset)https://www.kaggle.com/datasets/ankurnapa/brewery-operations-and-market-analysis-dataset
+https://www.kaggle.com/datasets/ankurnapa/brewery-operations-and-market-analysis-dataset
 
 ### Size
 2.62 GB
