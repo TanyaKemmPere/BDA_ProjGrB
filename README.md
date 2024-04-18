@@ -28,8 +28,9 @@ Le dataset contient quelques valeurs aberrantes qui devront être supprimées ma
 #### Quelles sont les zones de départ et d'arrivée les plus fréquentes pour les trajets en taxi ?
 
 **Approche initiale pour résoudre la question :**
--Analyser des données de localisation pour identifier les points de ramassage et de dépose les plus communs.
--Les visualisations comme les cartes de chaleur peuvent être utiles pour illustrer ces tendances.
+
+- Analyser des données de localisation pour identifier les points de ramassage et de dépose les plus communs.
+- Les visualisations comme les cartes de chaleur peuvent être utiles pour illustrer ces tendances.
 
 #### Quels sont les types de trajets les plus rentables pour les chauffeurs de taxi ? (en tenant compte des pourboires, des distances et des tarifs)
 
