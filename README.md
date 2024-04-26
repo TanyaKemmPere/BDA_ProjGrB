@@ -17,35 +17,6 @@ Le dataset contient quelques valeurs aberrantes qui devront être supprimées ma
 - Utiliser les données de taxi pour comparer le volume de courses avant et pendant la pandémie.
 - Analyser les variations géographiques pour identifier les quartiers les plus impactés. L'intégration de données démographiques ou économiques peut aussi aider à contextualiser les changements observés.
 
-#### Quel est l'impact des conditions météorologiques sur la fréquence des trajets en taxi ? (utilisation d'un autre jeu de données métérologique en parallèle)
-
-**Approche initiale pour résoudre la question :**
-
-- Fusionner les données météorologiques avec les données de taxi sur la même période.
-- Examiner comment les variations de la météo (pluie, température) influencent la demande de taxis.
-- Utiliser des analyses statistiques pour évaluer la corrélation entre la météo et le nombre de courses.
-
-#### Quelles sont les zones de départ et d'arrivée les plus fréquentes pour les trajets en taxi ?
-
-**Approche initiale pour résoudre la question :**
-
-- Analyser des données de localisation pour identifier les points de ramassage et de dépose les plus communs.
-- Les visualisations comme les cartes de chaleur peuvent être utiles pour illustrer ces tendances.
-
-#### Quels sont les types de trajets les plus rentables pour les chauffeurs de taxi ? (en tenant compte des pourboires, des distances et des tarifs)
-
-**Approche initiale pour résoudre la question :**
-
-- Examiner les données sur les pourboires, les tarifs, les distances, et les durées des trajets. Crée des catégories de trajets (par exemple, court/moyen/long) et analyse les bénéfices moyens par catégorie.
-- Utiliser des techniques d'analyse multivariée (clustering) pour déterminer les facteurs qui maximisent les revenus des chauffeurs.
-
-#### Quelles sont les heures pour lesquels les trajets sont les plus courts ?
-
-**Approche initiale pour résoudre la question :**
-
-- Collecter des données sur la durée des trajets et les horaires correspondants.
-- Analyser les périodes de la journée pour identifier les moments où les trajets sont généralement plus courts, probablement en raison de moins de trafic. La visualisation des données horaires peut révéler des tendances claires.
-
 #### Est-possible de prédire les pourboires en fonction du quartier de départ ?
 
 **Approche initiale pour résoudre la question :**
