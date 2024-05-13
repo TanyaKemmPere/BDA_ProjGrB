@@ -1,4 +1,37 @@
 # BDA_ProjGrB
+## Phase3
+### Description of the features used and any pre-processing to extract additional features
+
+Sur les 19 features présentes dans le dataset, nous avons choisi de conserver les features suivants :
+
+- tpep_pickup_datetime (la date et l'heure auxquelles le compteur a été mis en service)
+- tpep_dropoff_datetime (la date et l'heure auxquelles le compteur a été arrêté)
+- passenger_count (le nombre de passagers dans le véhicule)
+- trip_distance (la distance parcourue en miles indiquée par le taximètre)
+- PULocationID (TLC Taxi Zone dans laquelle le taximètre a été engagé)
+- DOLocationID (TLC Taxi Zone dans laquelle le taximètre a été arrêté)
+- payment_type (code numérique indiquant comment le passager a payé son voyage: 1= Carte de crédit,2= Espèces,3= Pas de frais,4= litige,5= Inconnu,6= Voyage annulé)
+- tip_amount (montant du pourboire - Ce champ est automatiquement renseigné pour les carte de crédit - Les pourboires en espèces ne sont pas inclus)
+- total_amount (Le montant total facturé aux passagers - Ne comprend pas les pourboires en espèces)
+
+RatecodeID, store_and_fwd_flag, congestion_surcharge et Airport_fee contenaient une grande proportion de valeurs manquantes comme nous avions pu le constater dans Exploration_data.ipynb. C'est pour cela qu'on ne les a pas pris en compte. De plus, ces données n'étaient pas utile pour les questions que nous avons choisi.
+
+fare_amount, extra, mta_tax, tolls_amount, improvement_surcharge correspondent à des taxes et surcharges qui sont inclus dans total_amount. Nous avons donc pas choisi de les garder.
+
+VendorID est le préstataire TPEP qui a fourni l'enregistrement. Cela nous est pas utile pour nos questions.
+
+### Goals of the analysis
+
+L'objectif est de nettoyer les données afin d'avoir des résultats pertinants lors de la phase 4. Dans le fichier Cleaning_yellow_taxi_trip.zpln, j'ai fait en sorte d'avoir :
+
+- tpep_pickup_datetime et tpep_dropoff_datetime avec l'année entre 2013 et 2023 (valeurs aberrantes : 2001, 2004, 2011, etc)
+- passenger_count en retirant les lignes avec des valeurs manquantes et plus petit que 1
+- trip_distance en gardant les valeurs au dessus de 0 et en dessous de 800
+- payment_type doit être entre 1 et 6
+- tip_amount doit être plus grand ou égal à 0
+- total_amount doit être plus grand que 0 mais plus petit que 400
+
+PULocationID et DOLocationID ont des valeurs entre 1 et 265 qui correspondent à des zones dans New York. Il y a pas de valeurs en dehors de cette fourchette donc il y a pas eu besoin de filtrer. C'est possible de voir à quoi fait référence les nombres dans le fichier taxi_zone_lookup.csv. Cleaning_yellow_taxi_trip.zpln a été fait suite à l'exploration des données dans Exploration_yellow_taxi_trip.zpln qui est considéré comme un "brouillon".
 
 ## Phase2
 
