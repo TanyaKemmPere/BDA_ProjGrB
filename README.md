@@ -60,7 +60,7 @@ Le dataset contient quelques valeurs aberrantes qui devront être supprimées ma
 
 ### Un script pour télécharger l'ensemble des données
 
-Nous n’avons pas créé un script de téléchargement pour les données car nous sommes passés par le site web officiel. Dans le cas où on ferait trop de requêtes, on risque de se faire bannir du site.
+Voir le fichier : script_download.py
 
 ### Script de traitement des données et résultats
 
