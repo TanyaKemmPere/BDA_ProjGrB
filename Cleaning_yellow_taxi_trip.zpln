@@ -1,0 +1,1163 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\r\nimport org.apache.spark.sql.DataFrame\r\nimport org.apache.spark.sql.functions._\r\n\r\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\r\nval startTime \u003d System.nanoTime()\r\n\r\n// Joindre les fichiers entre 2013 et 2023\r\nval dataDir \u003d \"/data/\"\r\nval allYearsData \u003d (2013 to 2023).flatMap { year \u003d\u003e\r\n  (1 to 12).map { month \u003d\u003e\r\n    s\"${dataDir}yellow_tripdata_$year-${f\"$month%02d\"}.parquet\"\r\n  }\r\n}.filter(path \u003d\u003e new java.io.File(path).exists)\r\n\r\nval allData: DataFrame \u003d allYearsData.map(spark.read.parquet).reduce(_ union _)\r\n\r\n// Arrête le chronomètre et calcule la durée\r\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\r\nval formattedDuration \u003d f\"$duration%.1f\"\r\n\r\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\r\n\r\n// Affichage des premières lignes pour vérification\r\nallData.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:25:05.119",
+      "progress": 85,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\tTemps d\u0027exécution: 19.7s\n+--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+\n|VendorID|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|RatecodeID|store_and_fwd_flag|PULocationID|DOLocationID|payment_type|fare_amount|extra|mta_tax|tip_amount|tolls_amount|improvement_surcharge|total_amount|congestion_surcharge|airport_fee|\n+--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+\n|       2| 2013-01-01 00:39:00|  2013-01-01 00:55:00|            3.0|         3.86|       1.0|              NULL|         238|         116|           2|       15.0|  0.5|    0.5|       0.0|         0.0|                  0.0|        16.0|                NULL|       NULL|\n|       2| 2013-01-01 00:12:00|  2013-01-01 00:16:00|            5.0|          0.0|       1.0|              NULL|         264|         264|           1|        3.5|  0.5|    0.5|      0.12|         0.0|                  0.0|        4.62|                NULL|       NULL|\n|       2| 2013-01-01 00:02:00|  2013-01-01 00:03:00|            3.0|          0.0|       1.0|              NULL|         264|         264|           1|        2.5|  0.5|    0.5|      0.25|         0.0|                  0.0|        3.75|                NULL|       NULL|\n|       2| 2013-01-01 00:38:00|  2013-01-01 00:38:00|            2.0|          0.0|       1.0|              NULL|         264|         264|           2|        2.5|  0.5|    0.5|       0.0|         0.0|                  0.0|         3.5|                NULL|       NULL|\n|       2| 2013-01-01 00:03:00|  2013-01-01 00:04:00|            4.0|          0.0|       1.0|              NULL|         264|         264|           1|        3.0|  0.5|    0.5|      0.07|         0.0|                  0.0|        4.07|                NULL|       NULL|\n|       2| 2013-01-01 00:03:00|  2013-01-01 00:04:00|            3.0|          0.0|       1.0|              NULL|         146|         146|           1|        2.5|  0.5|    0.5|      0.25|         0.0|                  0.0|        3.75|                NULL|       NULL|\n|       2| 2013-01-01 00:05:00|  2013-01-01 00:09:00|            4.0|          0.0|       1.0|              NULL|         146|         146|           1|        4.5|  0.5|    0.5|      1.25|         0.0|                  0.0|        6.75|                NULL|       NULL|\n|       2| 2013-01-01 00:06:00|  2013-01-01 00:09:00|            4.0|          0.0|       1.0|              NULL|         146|         146|           1|        4.0|  0.5|    0.5|      0.15|         0.0|                  0.0|        5.15|                NULL|       NULL|\n|       2| 2013-01-01 00:14:00|  2013-01-01 00:16:00|            3.0|          0.0|       1.0|              NULL|         146|         146|           1|        3.0|  0.5|    0.5|      0.05|         0.0|                  0.0|        4.05|                NULL|       NULL|\n|       2| 2013-01-01 00:04:00|  2013-01-01 00:06:00|            5.0|          0.0|       1.0|              NULL|         130|         130|           1|        3.0|  0.5|    0.5|      0.45|         0.0|                  0.0|        4.45|                NULL|       NULL|\n|       2| 2013-01-01 00:16:00|  2013-01-01 00:17:00|            5.0|          0.0|       1.0|              NULL|         130|         130|           1|        2.5|  0.5|    0.5|      0.29|         0.0|                  0.0|        3.79|                NULL|       NULL|\n|       2| 2013-01-01 00:07:00|  2013-01-01 00:21:00|            1.0|         1.76|       1.0|              NULL|          79|         186|           2|       10.5|  0.5|    0.5|       0.0|         0.0|                  0.0|        11.5|                NULL|       NULL|\n|       2| 2013-01-01 00:29:00|  2013-01-01 00:35:00|            1.0|         0.94|       1.0|              NULL|         234|         249|           1|        6.0|  0.5|    0.5|       1.3|         0.0|                  0.0|         8.3|                NULL|       NULL|\n|       2| 2013-01-01 00:36:00|  2013-01-01 00:46:00|            1.0|         1.97|       1.0|              NULL|         249|          13|           1|        9.0|  0.5|    0.5|       1.5|         0.0|                  0.0|        11.5|                NULL|       NULL|\n|       2| 2013-01-01 00:52:00|  2013-01-01 00:53:00|            1.0|         0.53|       1.0|              NULL|         231|         231|           2|        3.5|  0.5|    0.5|       0.0|         0.0|                  0.0|         4.5|                NULL|       NULL|\n|       2| 2013-01-01 00:56:00|  2013-01-01 01:06:00|            1.0|         1.76|       1.0|              NULL|         231|         261|           1|        9.0|  0.5|    0.5|       1.0|         0.0|                  0.0|        11.0|                NULL|       NULL|\n|       1| 2013-01-01 00:13:33|  2013-01-01 00:19:33|            1.0|          0.7|       1.0|                 Y|         164|         186|           2|        5.5|  0.5|    0.5|       0.0|         0.0|                  0.0|         6.5|                NULL|       NULL|\n|       1| 2013-01-01 00:28:40|  2013-01-01 00:56:44|            1.0|          9.4|       1.0|                 N|         161|         243|           1|       31.0|  0.5|    0.5|       0.0|         0.0|                  0.0|        32.0|                NULL|       NULL|\n|       1| 2013-01-01 00:07:08|  2013-01-01 00:30:15|            1.0|          3.2|       1.0|                 N|          17|          37|           1|       14.0|  0.5|    0.5|       3.0|         0.0|                  0.0|        18.0|                NULL|       NULL|\n|       1| 2013-01-01 00:34:52|  2013-01-01 00:53:38|            2.0|          2.4|       1.0|                 N|          37|         256|           2|       11.5|  0.5|    0.5|       0.0|         0.0|                  0.0|        12.5|                NULL|       NULL|\n+--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+\nonly showing top 20 rows\n\nimport org.apache.spark.sql.DataFrame\nimport org.apache.spark.sql.functions._\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 29545471746417\nval \u001b[1m\u001b[34mdataDir\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d /data/\nval \u001b[1m\u001b[34mallYearsData\u001b[0m: \u001b[1m\u001b[32mIndexedSeq[String]\u001b[0m \u003d Vector(/data/yellow_tripdata_2013-01.parquet, /data/yellow_tripdata_2013-02.parquet, /data/yellow_tripdata_2013-03.parquet, /data/yellow_tripdata_2013-04.parquet, /data/yellow_tripdata_2013-05.parquet, /data/yellow_tripdata_2013-06.parquet, /data/yellow_tripdata_2013-07.parquet, /data/yellow_tripdata_2013-08.parquet, /data/yellow_tripdata_2013-09.parquet, /data/yellow_tripdata_2013-10.parquet, /data/yellow_tripdata_2013-11.parquet, /data/yellow_tripdata_2013-12.parquet, /data/yellow_tripdata_2014-01.parquet, /data/yellow_tripdata_...\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d0"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d1"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d7"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d8"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d9"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d10"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d11"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d12"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d13"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d14"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d15"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d16"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d17"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d18"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d19"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d20"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d21"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d22"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d23"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d24"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d25"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d26"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d27"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d28"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d29"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d30"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d31"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d32"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d33"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d34"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d35"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d36"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d37"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d38"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d39"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d40"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d41"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d42"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d43"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d44"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d45"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d46"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d47"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d48"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d49"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d50"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d51"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d52"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d53"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d54"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d55"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d56"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d57"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d58"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d59"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d60"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d61"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d62"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d63"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d64"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d65"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d66"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d67"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d68"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d69"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d70"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d71"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d72"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d73"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d74"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d75"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d76"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d77"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d78"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d79"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d80"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d81"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d82"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d83"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d84"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d85"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d86"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d87"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d88"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d89"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d90"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d91"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d92"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d93"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d94"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d95"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d96"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d97"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d98"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d99"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d100"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d101"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d102"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d103"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d104"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d105"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d106"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d107"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d108"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d109"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d110"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d111"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d112"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d113"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d114"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d115"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d116"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d117"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d118"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d119"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d120"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d121"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d122"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d123"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d124"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d125"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d126"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d127"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d128"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d129"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d130"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d131"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d132"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d133"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d134"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715605007333_1500131153",
+      "id": "paragraph_1715605007333_1500131153",
+      "dateCreated": "2024-05-13 12:56:47.333",
+      "dateStarted": "2024-05-13 17:23:55.505",
+      "dateFinished": "2024-05-13 17:24:44.648",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n// Sélection des colonnes nécessaires\nval selectedData \u003d allData.select(\n  $\"tpep_pickup_datetime\",\n  $\"tpep_dropoff_datetime\",\n  $\"passenger_count\",\n  $\"trip_distance\",\n  $\"PULocationID\",\n  $\"DOLocationID\",\n  $\"payment_type\",\n  $\"tip_amount\",\n  $\"total_amount\"\n)\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\n\n// Affichage des premières lignes pour vérification\nselectedData.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:14:53.914",
+      "progress": 85,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\tTemps d\u0027exécution: 0.0s\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\n|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|PULocationID|DOLocationID|payment_type|tip_amount|total_amount|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\n| 2013-01-01 00:39:00|  2013-01-01 00:55:00|            3.0|         3.86|         238|         116|           2|       0.0|        16.0|\n| 2013-01-01 00:12:00|  2013-01-01 00:16:00|            5.0|          0.0|         264|         264|           1|      0.12|        4.62|\n| 2013-01-01 00:02:00|  2013-01-01 00:03:00|            3.0|          0.0|         264|         264|           1|      0.25|        3.75|\n| 2013-01-01 00:38:00|  2013-01-01 00:38:00|            2.0|          0.0|         264|         264|           2|       0.0|         3.5|\n| 2013-01-01 00:03:00|  2013-01-01 00:04:00|            4.0|          0.0|         264|         264|           1|      0.07|        4.07|\n| 2013-01-01 00:03:00|  2013-01-01 00:04:00|            3.0|          0.0|         146|         146|           1|      0.25|        3.75|\n| 2013-01-01 00:05:00|  2013-01-01 00:09:00|            4.0|          0.0|         146|         146|           1|      1.25|        6.75|\n| 2013-01-01 00:06:00|  2013-01-01 00:09:00|            4.0|          0.0|         146|         146|           1|      0.15|        5.15|\n| 2013-01-01 00:14:00|  2013-01-01 00:16:00|            3.0|          0.0|         146|         146|           1|      0.05|        4.05|\n| 2013-01-01 00:04:00|  2013-01-01 00:06:00|            5.0|          0.0|         130|         130|           1|      0.45|        4.45|\n| 2013-01-01 00:16:00|  2013-01-01 00:17:00|            5.0|          0.0|         130|         130|           1|      0.29|        3.79|\n| 2013-01-01 00:07:00|  2013-01-01 00:21:00|            1.0|         1.76|          79|         186|           2|       0.0|        11.5|\n| 2013-01-01 00:29:00|  2013-01-01 00:35:00|            1.0|         0.94|         234|         249|           1|       1.3|         8.3|\n| 2013-01-01 00:36:00|  2013-01-01 00:46:00|            1.0|         1.97|         249|          13|           1|       1.5|        11.5|\n| 2013-01-01 00:52:00|  2013-01-01 00:53:00|            1.0|         0.53|         231|         231|           2|       0.0|         4.5|\n| 2013-01-01 00:56:00|  2013-01-01 01:06:00|            1.0|         1.76|         231|         261|           1|       1.0|        11.0|\n| 2013-01-01 00:13:33|  2013-01-01 00:19:33|            1.0|          0.7|         164|         186|           2|       0.0|         6.5|\n| 2013-01-01 00:28:40|  2013-01-01 00:56:44|            1.0|          9.4|         161|         243|           1|       0.0|        32.0|\n| 2013-01-01 00:07:08|  2013-01-01 00:30:15|            1.0|          3.2|          17|          37|           1|       3.0|        18.0|\n| 2013-01-01 00:34:52|  2013-01-01 00:53:38|            2.0|          2.4|          37|         256|           2|       0.0|        12.5|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\nonly showing top 20 rows\n\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 29577977867480\nval \u001b[1m\u001b[34mselectedData\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 7 more fields]\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 0.037501752\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 0.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d135"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d136"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d137"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715605042587_538658167",
+      "id": "paragraph_1715605042587_538658167",
+      "dateCreated": "2024-05-13 12:57:22.587",
+      "dateStarted": "2024-05-13 17:24:46.663",
+      "dateFinished": "2024-05-13 17:24:52.625",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Filtrage des données\nval filteredData \u003d selectedData\n  .filter(\n    $\"passenger_count\".isNotNull \u0026\u0026 $\"passenger_count\" \u003e\u003d 1 \u0026\u0026 $\"passenger_count\" \u003c 20 \u0026\u0026\n    $\"trip_distance\" \u003e 0 \u0026\u0026 $\"trip_distance\" \u003c 800 \u0026\u0026\n    $\"payment_type\".between(1, 6) \u0026\u0026\n    $\"tip_amount\" \u003e\u003d 0 \u0026\u0026\n    $\"total_amount\" \u003e 0 \u0026\u0026 $\"total_amount\" \u003c 400\n  )\n  .withColumn(\"pickup_datetime\", to_timestamp($\"tpep_pickup_datetime\"))\n  .withColumn(\"dropoff_datetime\", to_timestamp($\"tpep_dropoff_datetime\"))\n  .withColumn(\"duration_hours\", (unix_timestamp($\"dropoff_datetime\") - unix_timestamp($\"pickup_datetime\")) / 3600.0)\n  .filter(\n    $\"pickup_datetime\".isNotNull \u0026\u0026 $\"dropoff_datetime\".isNotNull \u0026\u0026\n    year($\"pickup_datetime\").between(2013, 2023) \u0026\u0026\n    year($\"dropoff_datetime\").between(2013, 2023) \u0026\u0026\n    $\"duration_hours\" \u003e 0 \u0026\u0026 $\"duration_hours\" \u003c\u003d 12\n  )\n  .drop(\"pickup_datetime\", \"dropoff_datetime\", \"duration_hours\")\n  \n  // Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:14:25.614",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\tTemps d\u0027exécution: 0.2s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 29586453878079\nval \u001b[1m\u001b[34mfilteredData\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 7 more fields]\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 0.220548909\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 0.2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715605089309_114931249",
+      "id": "paragraph_1715605089309_114931249",
+      "dateCreated": "2024-05-13 12:58:09.309",
+      "dateStarted": "2024-05-13 17:24:55.179",
+      "dateFinished": "2024-05-13 17:24:55.692",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Affichage des premières lignes pour vérification\nprintln(\"Quelques lignes du DataFrame filtré:\")\nfilteredData.show(5, false)\n\n  // Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d \nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:13:55.215",
+      "progress": 90,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Quelques lignes du DataFrame filtré:\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\n|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|PULocationID|DOLocationID|payment_type|tip_amount|total_amount|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\n|2013-01-01 00:39:00 |2013-01-01 00:55:00  |3.0            |3.86         |238         |116         |2           |0.0       |16.0        |\n|2013-01-01 00:07:00 |2013-01-01 00:21:00  |1.0            |1.76         |79          |186         |2           |0.0       |11.5        |\n|2013-01-01 00:29:00 |2013-01-01 00:35:00  |1.0            |0.94         |234         |249         |1           |1.3       |8.3         |\n|2013-01-01 00:36:00 |2013-01-01 00:46:00  |1.0            |1.97         |249         |13          |1           |1.5       |11.5        |\n|2013-01-01 00:52:00 |2013-01-01 00:53:00  |1.0            |0.53         |231         |231         |2           |0.0       |4.5         |\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\nonly showing top 5 rows\n\n\tTemps d\u0027exécution: 8.6s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 29073693818567\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 8.588543103\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 8.6\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d138"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d139"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d140"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715606362686_1554195223",
+      "id": "paragraph_1715606362686_1554195223",
+      "dateCreated": "2024-05-13 13:19:22.695",
+      "dateStarted": "2024-05-13 17:16:22.506",
+      "dateFinished": "2024-05-13 17:16:31.313",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Affichage du nombre de ligne par année\nval yearCounts \u003d filteredData\n  .select(year($\"tpep_pickup_datetime\").alias(\"pickup_year\"))\n  .groupBy(\"pickup_year\")\n  .count()\n  .orderBy(\"pickup_year\")\n\nyearCounts.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:12:33.458",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------+---------+\n|pickup_year|    count|\n+-----------+---------+\n|       2013|170506769|\n|       2014|164328908|\n|       2015|144938331|\n|       2016|130107651|\n|       2017|112365818|\n|       2018|100903485|\n|       2019| 81546552|\n|       2020| 22910378|\n|       2021| 28199888|\n|       2022| 36772447|\n|       2023| 35581618|\n+-----------+---------+\n\nval \u001b[1m\u001b[34myearCounts\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [pickup_year: int, count: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715617684564_822349701",
+      "id": "paragraph_1715617684564_822349701",
+      "dateCreated": "2024-05-13 16:28:04.566",
+      "dateStarted": "2024-05-13 17:16:37.095",
+      "dateFinished": "2024-05-13 17:23:35.677",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Affichage du nombre de ligne par année\nval yearCounts \u003d filteredData\n  .select(year($\"tpep_dropoff_datetime\").alias(\"dropoff_year\"))\n  .groupBy(\"dropoff_year\")\n  .count()\n  .orderBy(\"dropoff_year\")\n\nyearCounts.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:12:35.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------+---------+\n|dropoff_year|    count|\n+------------+---------+\n|        2013|170504793|\n|        2014|164329006|\n|        2015|144938410|\n|        2016|130107988|\n|        2017|112366063|\n|        2018|100903664|\n|        2019| 81546798|\n|        2020| 22911067|\n|        2021| 28199627|\n|        2022| 36772341|\n|        2023| 35582088|\n+------------+---------+\n\nval \u001b[1m\u001b[34myearCounts\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [dropoff_year: int, count: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d138"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d139"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715620392428_1805026279",
+      "id": "paragraph_1715620392428_1805026279",
+      "dateCreated": "2024-05-13 17:13:12.433",
+      "dateStarted": "2024-05-13 17:25:04.071",
+      "dateFinished": "2024-05-13 17:32:27.023",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Statistiques descriptives\nprintln(\"Statistiques descriptives pour \u0027passenger_count\u0027:\")\nfilteredData.describe(\"passenger_count\").show()\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d \nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:13:33.411",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Statistiques descriptives pour \u0027passenger_count\u0027:\n+-------+------------------+\n|summary|   passenger_count|\n+-------+------------------+\n|  count|        1028161845|\n|   mean| 1.637341715398902|\n| stddev|1.2789692250398288|\n|    min|               1.0|\n|    max|               9.0|\n+-------+------------------+\n\n\tTemps d\u0027exécution: 378.6s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 28428880207347\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 378.610400264\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 378.6\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715606439684_1056423617",
+      "id": "paragraph_1715606439684_1056423617",
+      "dateCreated": "2024-05-13 13:20:39.684",
+      "dateStarted": "2024-05-13 17:05:37.629",
+      "dateFinished": "2024-05-13 17:11:56.522",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Statistiques descriptives\nprintln(\"Statistiques descriptives pour \u0027trip_distance\u0027:\")\nfilteredData.describe(\"trip_distance\").show()\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d \nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:13:24.082",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Statistiques descriptives pour \u0027trip_distance\u0027:\n+-------+------------------+\n|summary|     trip_distance|\n+-------+------------------+\n|  count|        1028161845|\n|   mean|3.0015497211631086|\n| stddev| 3.745036451274469|\n|    min|              0.01|\n|    max|            791.54|\n+-------+------------------+\n\n\tTemps d\u0027exécution: 390.2s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 26258143608589\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 390.238126701\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 390.2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715606391951_1572268633",
+      "id": "paragraph_1715606391951_1572268633",
+      "dateCreated": "2024-05-13 13:19:51.953",
+      "dateStarted": "2024-05-13 16:29:26.954",
+      "dateFinished": "2024-05-13 16:35:57.450",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Statistiques descriptives\nprintln(\"Statistiques descriptives pour \u0027PULocationID\u0027:\")\nfilteredData.describe(\"PULocationID\").show()\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d \nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:11:38.344",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Statistiques descriptives pour \u0027PULocationID\u0027:\n+-------+------------------+\n|summary|      PULocationID|\n+-------+------------------+\n|  count|        1028161845|\n|   mean|162.71745904556496|\n| stddev| 66.71198648049561|\n|    min|                 1|\n|    max|               265|\n+-------+------------------+\n\n\tTemps d\u0027exécution: 406.9s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 25002416599244\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 406.934577247\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 406.9\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715613345468_1939033153",
+      "id": "paragraph_1715613345468_1939033153",
+      "dateCreated": "2024-05-13 15:15:45.472",
+      "dateStarted": "2024-05-13 16:08:31.244",
+      "dateFinished": "2024-05-13 16:15:18.417",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Statistiques descriptives \nprintln(\"Statistiques descriptives pour \u0027DOLocationID\u0027:\")\nfilteredData.describe(\"DOLocationID\").show()\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d \nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:11:19.240",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Statistiques descriptives pour \u0027DOLocationID\u0027:\n+-------+------------------+\n|summary|      DOLocationID|\n+-------+------------------+\n|  count|        1028161845|\n|   mean|160.83411356798598|\n| stddev| 70.41217223597155|\n|    min|                 1|\n|    max|               265|\n+-------+------------------+\n\n\tTemps d\u0027exécution: 413.6s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 25572963465100\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 413.554052449\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 413.6\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715613550085_1861679968",
+      "id": "paragraph_1715613550085_1861679968",
+      "dateCreated": "2024-05-13 15:19:10.087",
+      "dateStarted": "2024-05-13 16:18:01.737",
+      "dateFinished": "2024-05-13 16:24:55.618",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Statistiques descriptives\nprintln(\"Statistiques descriptives pour \u0027payment_type\u0027:\")\nfilteredData.describe(\"payment_type\").show()\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d \nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:13:13.007",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Statistiques descriptives pour \u0027payment_type\u0027:\n+-------+------------------+\n|summary|      payment_type|\n+-------+------------------+\n|  count|        1028161845|\n|   mean|1.3590220312056027|\n| stddev| 0.501213058945132|\n|    min|                 1|\n|    max|                 5|\n+-------+------------------+\n\n\tTemps d\u0027exécution: 392.9s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 26849283124437\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 392.861461391\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 392.9\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715605295718_1039660357",
+      "id": "paragraph_1715605295718_1039660357",
+      "dateCreated": "2024-05-13 13:01:35.718",
+      "dateStarted": "2024-05-13 16:39:18.090",
+      "dateFinished": "2024-05-13 16:45:51.189",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Statistiques descriptives\nprintln(\"Statistiques descriptives pour \u0027tip_amount\u0027:\")\nfilteredData.describe(\"tip_amount\").show()\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:13:01.974",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Statistiques descriptives pour \u0027tip_amount\u0027:\n+-------+------------------+\n|summary|        tip_amount|\n+-------+------------------+\n|  count|        1028161845|\n|   mean|1.8242027050914496|\n| stddev| 2.571036397465161|\n|    min|               0.0|\n|    max|             391.0|\n+-------+------------------+\n\n\tTemps d\u0027exécution: 424.0s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 23734268710531\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 423.964999643\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 424.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715609669492_1525452208",
+      "id": "paragraph_1715609669492_1525452208",
+      "dateCreated": "2024-05-13 14:14:29.492",
+      "dateStarted": "2024-05-13 15:47:22.850",
+      "dateFinished": "2024-05-13 15:54:27.342",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Démarre le chronomètre pour mesurer le temps d\u0027exécution\nval startTime \u003d System.nanoTime()\n\n// Statistiques descriptives\nprintln(\"Statistiques descriptives pour \u0027total_amount\u0027:\")\nfilteredData.describe(\"total_amount\").show()\n\n// Arrête le chronomètre et calcule la durée\nval duration \u003d (System.nanoTime() - startTime) / 1e9d\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 18:11:51.841",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Statistiques descriptives pour \u0027total_amount\u0027:\n+-------+------------------+\n|summary|      total_amount|\n+-------+------------------+\n|  count|        1028161845|\n|   mean|16.738070693639692|\n| stddev|13.939369524643432|\n|    min|              0.01|\n|    max|            399.99|\n+-------+------------------+\n\n\tTemps d\u0027exécution: 439.1s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 24398643494559\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 439.09616051\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 439.1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d141"
+            },
+            {
+              "jobUrl": "http://226b0858a916:4040/jobs/job?id\u003d142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715609706827_750694161",
+      "id": "paragraph_1715609706827_750694161",
+      "dateCreated": "2024-05-13 14:15:06.827",
+      "dateStarted": "2024-05-13 15:58:27.366",
+      "dateFinished": "2024-05-13 16:05:46.822",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-13 17:25:04.074",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715621104069_1074478825",
+      "id": "paragraph_1715621104069_1074478825",
+      "dateCreated": "2024-05-13 17:25:04.074",
+      "status": "READY"
+    }
+  ],
+  "name": "Cleaning_yellow_taxi_trip",
+  "id": "2JZNE8F6W",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
