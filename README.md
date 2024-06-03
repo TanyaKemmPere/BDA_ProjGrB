@@ -2,36 +2,37 @@
 ## Phase3
 ### Description of the features used and any pre-processing to extract additional features
 
-Sur les 19 features présentes dans le dataset, nous avons choisi de conserver les features suivants :
+Sur les 19 features présentes dans le dataset, nous avons choisi de conserver les suivantes :
 
-- tpep_pickup_datetime (la date et l'heure auxquelles le compteur a été mis en service)
-- tpep_dropoff_datetime (la date et l'heure auxquelles le compteur a été arrêté)
-- passenger_count (le nombre de passagers dans le véhicule)
-- trip_distance (la distance parcourue en miles indiquée par le taximètre)
-- PULocationID (TLC Taxi Zone dans laquelle le taximètre a été engagé)
-- DOLocationID (TLC Taxi Zone dans laquelle le taximètre a été arrêté)
-- payment_type (code numérique indiquant comment le passager a payé son voyage: 1= Carte de crédit,2= Espèces,3= Pas de frais,4= litige,5= Inconnu,6= Voyage annulé)
-- tip_amount (montant du pourboire - Ce champ est automatiquement renseigné pour les carte de crédit - Les pourboires en espèces ne sont pas inclus)
-- total_amount (Le montant total facturé aux passagers - Ne comprend pas les pourboires en espèces)
+- tpep_pickup_datetime : Date et heure de mise en service du compteur.
+- tpep_dropoff_datetime : Date et heure d'arrêt du compteur.
+- passenger_count : Nombre de passagers dans le véhicule.
+- trip_distance : Distance parcourue, en miles, indiquée par le taximètre.
+- PULocationID : Zone TLC Taxi où le taximètre a été activé.
+- DOLocationID : Zone TLC Taxi où le taximètre a été arrêté.
+- payment_type : Code numérique indiquant le mode de paiement du passager (1 = carte de crédit, 2 = espèces, 3 = sans frais, 4 = litige, 5 = inconnu, 6 = voyage annulé).
+- tip_amount : Montant du pourboire, automatiquement renseigné pour les paiements par carte (les pourboires en espèces ne sont pas inclus).
+- total_amount : Montant total facturé aux passagers (ne comprend pas les pourboires en espèces).
 
-RatecodeID, store_and_fwd_flag, congestion_surcharge et Airport_fee contenaient une grande proportion de valeurs manquantes comme nous avions pu le constater dans Exploration_data.ipynb. C'est pour cela qu'on ne les a pas pris en compte. De plus, ces données n'étaient pas utile pour les questions que nous avons choisi.
+Les features suivantes ont été exclues pour diverses raisons :
 
-fare_amount, extra, mta_tax, tolls_amount, improvement_surcharge correspondent à des taxes et surcharges qui sont inclus dans total_amount. Nous avons donc pas choisi de les garder.
-
-VendorID est le préstataire TPEP qui a fourni l'enregistrement. Cela nous est pas utile pour nos questions.
+- RatecodeID, store_and_fwd_flag, congestion_surcharge, et Airport_fee présentaient une grande proportion de valeurs manquantes, comme observé dans le fichier Exploration_data.ipynb.
+- fare_amount, extra, mta_tax, tolls_amount, et improvement_surcharge sont des composantes déjà incluses dans total_amount.
+- VendorID ne nous est pas utile pour les questions posées, car il s'agit simplement du fournisseur TPEP qui a généré l'enregistrement.
 
 ### Goals of the analysis
 
-L'objectif est de nettoyer les données afin d'avoir des résultats pertinants lors de la phase 4. Dans le fichier Cleaning_yellow_taxi_trip.zpln, j'ai fait en sorte d'avoir :
+L'objectif principal est de nettoyer les données pour assurer des résultats pertinents lors de la phase 4. Dans le fichier Cleaning_yellow_taxi_trip.zpln, j'ai effectué les traitements suivants :
 
-- tpep_pickup_datetime et tpep_dropoff_datetime avec l'année entre 2013 et 2023 (valeurs aberrantes : 2001, 2004, 2011, etc)
-- passenger_count en retirant les lignes avec des valeurs manquantes et plus petit que 1
-- trip_distance en gardant les valeurs au dessus de 0 et en dessous de 800
-- payment_type doit être entre 1 et 6
-- tip_amount doit être plus grand ou égal à 0
-- total_amount doit être plus grand que 0 mais plus petit que 400
+- Filtré tpep_pickup_datetime et tpep_dropoff_datetime pour garder les années entre 2013 et 2023, en éliminant les valeurs aberrantes telles que les années 2001, 2004 et 2011.
+- Supprimé les lignes avec des passenger_count manquants ou inférieurs à 1.
+- Conservé les trip_distance supérieures à 0 et inférieures à 800 miles.
+- Assuré que le payment_type soit compris entre 1 et 6.
+- Garanti que le tip_amount soit égal ou supérieur à 0.
+- Limité le total_amount à un intervalle supérieur à 0 mais inférieur à 400 dollars.
+- Vérifié que les PULocationID et DOLocationID correspondent à des valeurs entre 1 et 265, qui sont les zones valides de New York (consultables dans le fichier taxi_zone_lookup.csv).
 
-PULocationID et DOLocationID ont des valeurs entre 1 et 265 qui correspondent à des zones dans New York. Il y a pas de valeurs en dehors de cette fourchette donc il y a pas eu besoin de filtrer. C'est possible de voir à quoi fait référence les nombres dans le fichier taxi_zone_lookup.csv. Cleaning_yellow_taxi_trip.zpln a été fait suite à l'exploration des données dans Exploration_yellow_taxi_trip.zpln qui est considéré comme un "brouillon".
+Cleaning_yellow_taxi_trip.zpln a été préparé suite à une exploration initiale des données réalisée dans Exploration_yellow_taxi_trip.zpln, qui a servi de brouillon pour cette phase.
 
 ## Phase2
 
@@ -59,7 +60,7 @@ Le dataset contient quelques valeurs aberrantes qui devront être supprimées ma
 
 ### Un script pour télécharger l'ensemble des données
 
-Nous n’avons pas créé un script de téléchargement pour les données car nous sommes passés par le site web officiel. Dans le cas où on ferait trop de requêtes, on risque de se faire bannir du site.
+Voir le fichier : script_download.py
 
 ### Script de traitement des données et résultats
 
