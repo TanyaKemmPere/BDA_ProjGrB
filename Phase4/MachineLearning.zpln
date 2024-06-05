@@ -1,0 +1,1963 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# Estimation du montant du pourboire\nL\u0027idée est ici de parvenir a estimer le montant du pourboire (tip_amount) en utilisant des méthodes de machine learning. Dans l\u0027idéal, pour que l\u0027algorithme puisse être utile, il faudrait que celui-ci n\u0027utilise que des données qu\u0027un chauffeur de taxi pourrait avoir a priori (p.ex la date, la zone de pickup, etc) à l\u0027inverse de la distance parcourue par exemple que le chuaffeur ne peut connaitre qu\u0027une fois que le client est monté dans le taxi.",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:33:08.977",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eEstimation du montant du pourboire\u003c/h1\u003e\n\u003cp\u003eL\u0026rsquo;idée est ici de parvenir a estimer le montant du pourboire (tip_amount) en utilisant des méthodes de machine learning. Dans l\u0026rsquo;idéal, pour que l\u0026rsquo;algorithme puisse être utile, il faudrait que celui-ci n\u0026rsquo;utilise que des données qu\u0026rsquo;un chauffeur de taxi pourrait avoir a priori (p.ex la date, la zone de pickup, etc) à l\u0026rsquo;inverse de la distance parcourue par exemple que le chuaffeur ne peut connaitre qu\u0026rsquo;une fois que le client est monté dans le taxi.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717590611280_1238720963",
+      "id": "paragraph_1717590611280_1238720963",
+      "dateCreated": "2024-06-05 12:30:11.281",
+      "dateStarted": "2024-06-05 20:33:09.011",
+      "dateFinished": "2024-06-05 20:33:11.457",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:33:11.514",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717617963335_1341586135",
+      "id": "paragraph_1717617963335_1341586135",
+      "dateCreated": "2024-06-05 20:06:03.336",
+      "dateStarted": "2024-06-05 20:33:11.532",
+      "dateFinished": "2024-06-05 20:33:11.538",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n## Baseline et exploration",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:33:11.632",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eBaseline et exploration\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717343295859_1916025405",
+      "id": "paragraph_1717343295859_1916025405",
+      "dateCreated": "2024-06-02 15:48:15.859",
+      "dateStarted": "2024-06-05 20:33:11.663",
+      "dateFinished": "2024-06-05 20:33:11.673",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// ! il est nécessaire d\u0027avoir enregistrer le dataset a la fin de cleaning_yellow_taxi_trip.zpln pour pouvoir utiliser ce notebook !\n\n// Chargement des données nettoyées\nval cleanDF \u003d spark.read.parquet(\"/data/cleaned_data\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:33:11.763",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "val \u001b[1m\u001b[34mcleanDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 7 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d0"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717340534925_1011493348",
+      "id": "paragraph_1717340534925_1011493348",
+      "dateCreated": "2024-06-02 15:02:14.925",
+      "dateStarted": "2024-06-05 20:33:11.795",
+      "dateFinished": "2024-06-05 20:33:32.073",
+      "status": "FINISHED"
+    },
+    {
+      "text": "cleanDF.show(20)\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:33:32.128",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\n|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|PULocationID|DOLocationID|payment_type|tip_amount|total_amount|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\n| 2013-01-01 00:39:00|  2013-01-01 00:55:00|            3.0|         3.86|         238|         116|           2|       0.0|        16.0|\n| 2013-01-01 00:07:00|  2013-01-01 00:21:00|            1.0|         1.76|          79|         186|           2|       0.0|        11.5|\n| 2013-01-01 00:29:00|  2013-01-01 00:35:00|            1.0|         0.94|         234|         249|           1|       1.3|         8.3|\n| 2013-01-01 00:36:00|  2013-01-01 00:46:00|            1.0|         1.97|         249|          13|           1|       1.5|        11.5|\n| 2013-01-01 00:52:00|  2013-01-01 00:53:00|            1.0|         0.53|         231|         231|           2|       0.0|         4.5|\n| 2013-01-01 00:56:00|  2013-01-01 01:06:00|            1.0|         1.76|         231|         261|           1|       1.0|        11.0|\n| 2013-01-01 00:13:33|  2013-01-01 00:19:33|            1.0|          0.7|         164|         186|           2|       0.0|         6.5|\n| 2013-01-01 00:28:40|  2013-01-01 00:56:44|            1.0|          9.4|         161|         243|           1|       0.0|        32.0|\n| 2013-01-01 00:07:08|  2013-01-01 00:30:15|            1.0|          3.2|          17|          37|           1|       3.0|        18.0|\n| 2013-01-01 00:34:52|  2013-01-01 00:53:38|            2.0|          2.4|          37|         256|           2|       0.0|        12.5|\n| 2013-01-01 00:55:51|  2013-01-01 01:21:54|            4.0|          3.8|         256|          36|           2|       0.0|        17.5|\n| 2013-01-01 00:05:47|  2013-01-01 00:16:21|            1.0|          2.4|         231|          90|           2|       0.0|        11.0|\n| 2013-01-01 00:31:01|  2013-01-01 00:55:12|            1.0|          2.4|         249|          48|           1|       3.0|        20.0|\n| 2013-01-01 00:57:04|  2013-01-01 01:47:21|            1.0|          4.5|          48|         211|           2|       0.0|        31.5|\n| 2013-01-01 00:15:41|  2013-01-01 00:54:33|            2.0|         18.6|         132|          68|           1|       6.0|        63.3|\n| 2013-01-01 00:57:05|  2013-01-01 01:10:55|            1.0|          2.1|          68|         144|           2|       0.0|        11.5|\n| 2013-01-01 00:12:00|  2013-01-01 00:27:13|            1.0|          3.5|         232|         170|           2|       0.0|        15.5|\n| 2013-01-01 00:45:09|  2013-01-01 00:47:57|            4.0|          0.5|         170|         170|           2|       0.0|         5.0|\n| 2013-01-01 00:52:18|  2013-01-01 01:05:49|            1.0|          1.1|         162|         186|           2|       0.0|        10.5|\n| 2013-01-01 00:13:34|  2013-01-01 00:18:57|            2.0|          0.8|         262|         236|           2|       0.0|         6.5|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d1"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717340589359_1585920116",
+      "id": "paragraph_1717340589359_1585920116",
+      "dateCreated": "2024-06-02 15:03:09.359",
+      "dateStarted": "2024-06-05 20:33:32.151",
+      "dateFinished": "2024-06-05 20:33:37.556",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// description du dataset\nval rowCount \u003d cleanDF.count()\nprintln(s\"Number of rows: $rowCount\")\ncleanDF.printSchema()\ncleanDF.describe().show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:33:37.559",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Number of rows: 1028161845\nroot\n |-- tpep_pickup_datetime: timestamp_ntz (nullable \u003d true)\n |-- tpep_dropoff_datetime: timestamp_ntz (nullable \u003d true)\n |-- passenger_count: double (nullable \u003d true)\n |-- trip_distance: double (nullable \u003d true)\n |-- PULocationID: long (nullable \u003d true)\n |-- DOLocationID: long (nullable \u003d true)\n |-- payment_type: long (nullable \u003d true)\n |-- tip_amount: double (nullable \u003d true)\n |-- total_amount: double (nullable \u003d true)\n\n+-------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+\n|summary|   passenger_count|     trip_distance|      PULocationID|      DOLocationID|      payment_type|        tip_amount|      total_amount|\n+-------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+\n|  count|        1028161845|        1028161845|        1028161845|        1028161845|        1028161845|        1028161845|        1028161845|\n|   mean| 1.637341715398902|3.0015497211627644|162.71745904556496|160.83411356798598|1.3590220312056027| 1.824202705092079|16.738070692906124|\n| stddev|1.2789692250398228| 3.745036451274483| 66.71198648049604| 70.41217223597147| 0.501213058945131|2.5710363974651647|13.939369524643515|\n|    min|               1.0|              0.01|                 1|                 1|                 1|               0.0|              0.01|\n|    max|               9.0|            791.54|               265|               265|                 5|             391.0|            399.99|\n+-------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+\n\nval \u001b[1m\u001b[34mrowCount\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 1028161845\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d5"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717341078343_403055216",
+      "id": "paragraph_1717341078343_403055216",
+      "dateCreated": "2024-06-02 15:11:18.343",
+      "dateStarted": "2024-06-05 20:33:37.591",
+      "dateFinished": "2024-06-05 20:34:16.117",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n### Première approche pour déterminer le montant du pourboire\nOn fait simplement la moyenne des pourboire en fonction de la zone de pickup",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:16.153",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003ePremière approche pour déterminer le montant du pourboire\u003c/h3\u003e\n\u003cp\u003eOn fait simplement la moyenne des pourboire en fonction de la zone de pickup\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717590565766_1316039792",
+      "id": "paragraph_1717590565766_1316039792",
+      "dateCreated": "2024-06-05 12:29:25.766",
+      "dateStarted": "2024-06-05 20:34:16.163",
+      "dateFinished": "2024-06-05 20:34:16.169",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.functions._\n\nval startTime \u003d System.nanoTime()\n\n// création d\u0027une baseline pour déterminer le pourboire en fonction de la zone de pickup\nval avgTipByLocationPickupDF \u003d cleanDF.groupBy($\"PULocationID\")\n  .agg(avg($\"tip_amount\").alias(\"avg_tip_amount\"))\n  .orderBy($\"avg_tip_amount\".desc)\n  \nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\n\navgTipByLocationPickupDF.cache()\navgTipByLocationPickupDF.describe().show()\navgTipByLocationPickupDF.show(265)",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:16.263",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\tTemps d\u0027exécution: 0.0s\n+-------+-----------------+------------------+\n|summary|     PULocationID|    avg_tip_amount|\n+-------+-----------------+------------------+\n|  count|              265|               265|\n|   mean|            133.0|1.8154000393722296|\n| stddev|76.64311232372201|1.1613044379609183|\n|    min|                1| 0.532980675656889|\n|    max|              265|10.126331339124736|\n+-------+-----------------+------------------+\n\n+------------+------------------+\n|PULocationID|    avg_tip_amount|\n+------------+------------------+\n|           1|10.126331339124736|\n|          10|6.4969084882899155|\n|          93| 6.209428014113195|\n|         215| 6.109431763666204|\n|         132|5.8472571356932175|\n|          70| 5.651203898703956|\n|         219| 5.636215238746887|\n|         138|5.4027632000052765|\n|         216| 5.252256555598752|\n|         194| 5.046107914206714|\n|         130| 4.796713238259719|\n|         253| 4.313049424930057|\n|          28|  4.25856083260424|\n|         154| 4.183373528567329|\n|         176| 4.157627906976743|\n|         124|3.9502380952380958|\n|         251|3.9326064908722103|\n|         157| 3.758405014287032|\n|           8| 3.650239135263196|\n|          56|3.6092401817116078|\n|         252|3.3463946734664964|\n|         204|3.3290909090909095|\n|          58|3.2891425260718425|\n|         134|3.2232533824299443|\n|         184| 2.993295238095238|\n|         197| 2.961548555260989|\n|         156|2.8688992248062015|\n|         180| 2.847328315212341|\n|         265|2.7899696166884156|\n|         172| 2.704687499999999|\n|         187|2.6819424460431653|\n|          31|2.6075486381322954|\n|           2|2.5921449380917703|\n|          30|2.4862152777777777|\n|         120|2.4805367047308335|\n|          87| 2.478649588552193|\n|         214|2.4701530612244897|\n|          88|  2.43211781757234|\n|         207|2.3954089989401677|\n|          13|2.3755894815496976|\n|          57|2.3399426568971005|\n|          99|  2.31063829787234|\n|         104|2.3087804878048774|\n|         245|2.2786409736308313|\n|          52| 2.245389233936106|\n|         145| 2.218066438417254|\n|         160| 2.173527184772321|\n|         109|2.1608806818181816|\n|         195| 2.151836231670056|\n|          27|2.1375087108013933|\n|         261| 2.132654941936394|\n|          33|2.1254980062515156|\n|          54| 2.119720335402515|\n|         209| 2.118771727888264|\n|          63|2.1133346484652415|\n|          40|2.0753085080881575|\n|         115| 2.070732015145141|\n|          66|2.0682945392185963|\n|         175|2.0670999763649265|\n|         257| 2.023903820816865|\n|          64| 2.020243380062306|\n|         199|2.0191729323308265|\n|          23|2.0181126373626372|\n|         196|2.0122192799761986|\n|           6|1.9822373849571568|\n|          96|1.9665654648956343|\n|         150|1.9609872095117997|\n|         223|1.9581795227214227|\n|          84|1.9443971631205677|\n|         221|1.9239985820630987|\n|         240| 1.923710996667676|\n|         208|1.9229624277456645|\n|         203|1.9059753138516715|\n|          11|1.8956744251261917|\n|          65|1.8936879297310416|\n|         231|  1.88945587646747|\n|         105|1.8863893016344722|\n|         125|1.8709047595865007|\n|         117|1.8676525353283462|\n|         228|1.8596293846886411|\n|         106|1.8299950341340583|\n|         181|1.8052368734714905|\n|          34| 1.801144043251594|\n|          15|1.7908377491799143|\n|         264|1.7839399007922203|\n|         148|1.7722283405198103|\n|          12|1.7618100318996806|\n|         244|1.7615029726951321|\n|         246|1.7595996928883582|\n|         162|1.7575098414908124|\n|         232|1.7561339690969096|\n|         128|1.7502423822714683|\n|         255|1.7475730396937244|\n|         189| 1.747474063153943|\n|          14|1.7452343064300708|\n|         206|1.7417458384084443|\n|          25|1.7328547757708719|\n|         161| 1.723272545282735|\n|         190|1.7221861298302479|\n|         133| 1.721323722388276|\n|         230| 1.714689777394067|\n|         233|1.7142910908027376|\n|         158|1.7133068562795688|\n|         112|1.7088754085908362|\n|          80| 1.704360932462123|\n|          36|1.7002163633902108|\n|         200|1.7001581139935622|\n|         243|1.6984561573096588|\n|         166|1.6917613477517792|\n|         249| 1.687860118724996|\n|         202|1.6870502371616958|\n|          79|1.6773138799845067|\n|         170| 1.667928733868871|\n|         256|1.6642806089859716|\n|         101|1.6633392886145848|\n|         114|1.6585538282181336|\n|         211|1.6572416450707446|\n|          68|1.6529039347308303|\n|         234|1.6520877446171223|\n|         163|1.6456778578081472|\n|         144|1.6359627598867166|\n|          38|1.6345198343795915|\n|         201|1.6221308815575999|\n|         107| 1.619143197166042|\n|         186|1.6126461993478236|\n|         140|1.6080354867294895|\n|         164| 1.606401296160828|\n|         111|1.5997147651006711|\n|         262|1.5985922357718572|\n|         113|1.5893972268457603|\n|          90| 1.581410179769877|\n|         224|1.5803026330264245|\n|          53| 1.578147563414377|\n|          95|1.5772271629967933|\n|          67|1.5717833350415091|\n|          45|1.5704751738451732|\n|         226|1.5585419177036608|\n|         263|1.5561429939368703|\n|           4|1.5546443985070773|\n|          98|1.5545853808353813|\n|         142|1.5518154043160846|\n|          97|1.5514758009640062|\n|         127|1.5471179739495244|\n|          50|1.5393816480559457|\n|         239|1.5352967756831473|\n|          24|1.5311631991593604|\n|          48|1.5269305543523912|\n|          61|1.5228831047095706|\n|         137|1.5222068915147267|\n|         143|1.5205621873402002|\n|          16|1.5202913768211055|\n|         238|1.5168088329309493|\n|         108|1.5109988127040657|\n|         229|1.5053406464027732|\n|          49|1.4989279094028596|\n|          37|  1.49585331983901|\n|         192|1.4903305918400256|\n|          89|1.4840985613439364|\n|         151| 1.480587477297892|\n|         118|1.4789674523007863|\n|          43|1.4720774878333092|\n|          73|1.4720659882824545|\n|          55|1.4698943894389436|\n|          19|1.4648169141820655|\n|         236|1.4586682521694498|\n|         100|1.4491426141723165|\n|         116|1.4474936880400935|\n|         102|1.4460067114093962|\n|         141| 1.437252528397216|\n|         258|1.4115414950994607|\n|         146|1.4020142051405042|\n|          29|1.3956759941089838|\n|         155|1.3792380726323283|\n|         237|1.3744282040980589|\n|         198| 1.347257127841282|\n|           9|1.3414436852545737|\n|         227|1.3400904345714977|\n|          92|1.3398154615173927|\n|          76| 1.339149352699716|\n|         179|1.3315477881307158|\n|         121|1.3268936839739267|\n|         171| 1.318513176445071|\n|         135|1.3091604890355129|\n|         110|1.3010091743119265|\n|         178|  1.29402248850952|\n|          82|1.2901503705694093|\n|         225|1.2845184031186414|\n|         152|1.2771656434774037|\n|         122|1.2706331380208342|\n|          75|1.2606930145382154|\n|          46| 1.258678343949044|\n|          41|1.2540441895872825|\n|          17|1.2468646438814943|\n|         188|1.2417562784180072|\n|          62| 1.227040415898039|\n|         260|1.2135291763233589|\n|          22|1.1976097448862335|\n|          20|1.1905481410867496|\n|          39|1.1813347704703683|\n|         177| 1.164036407450827|\n|         119|1.1521968735489863|\n|         126|1.1514953714692615|\n|          86|1.1514563432210496|\n|           3| 1.147525960112082|\n|          21| 1.146757780035091|\n|           7|1.1438528329319086|\n|         217| 1.141707179636646|\n|         131| 1.134959871589085|\n|         165|1.0896369356347246|\n|         247| 1.083198607233794|\n|         123|1.0565751408090118|\n|         103|1.0554545454545454|\n|          59|           1.04355|\n|         220|1.0407595083487935|\n|          77|1.0388213233324406|\n|          85|1.0271330894038506|\n|         191| 1.018060380479735|\n|         129| 1.008756126176968|\n|          74|1.0058968448852366|\n|          26|0.9867413427307704|\n|          42|0.9648712360692363|\n|         213|0.9615710356600911|\n|         250| 0.955411678475446|\n|         139| 0.954211391837345|\n|          83|0.9495412382572672|\n|         149|0.9400873806136962|\n|          44|0.9294667523289433|\n|         168|0.9268317053390951|\n|         241|0.9019093826976187|\n|          91|0.9011027009140923|\n|          35| 0.898583680948111|\n|          71|0.8975105635595381|\n|         248|0.8956580019925727|\n|          72|0.8908932630239116|\n|         222|0.8870505845583978|\n|         183| 0.884671584959543|\n|         210|0.8845607794618007|\n|         259|0.8772478235635526|\n|         212|0.8745285206368845|\n|         185|0.8726533726727036|\n|         193|0.8611534959941733|\n|         174|0.8293891678076982|\n|         218| 0.789345532690805|\n|         242|0.7829143789073116|\n|         136|0.7400895348837205|\n|         173|0.7394985873513615|\n|          69| 0.738088336173132|\n|         235|0.7298929953984372|\n|         153|0.7227202883429763|\n|         169|0.7213605782343848|\n|          78|0.7177082443400252|\n|          81| 0.706887627096263|\n|          60|0.6877161518875234|\n|         182|0.6869084663568393|\n|          18|0.6664488898347166|\n|          51|0.6575983813266082|\n|          47|0.6488581746552854|\n|           5|0.6450449293966624|\n|         205|0.6422383419689114|\n|         147|0.6317241379310348|\n|          32|0.6172149095829745|\n|         159|0.6117803606134661|\n|          94| 0.592773601732705|\n|         167|0.5623512849162011|\n|         254| 0.532980675656889|\n+------------+------------------+\n\nimport org.apache.spark.sql.functions._\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 822225410685\nval \u001b[1m\u001b[34mavgTipByLocationPickupDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [PULocationID: bigint, avg_tip_amount: double]\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 0.025415518\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 0.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d7"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d8"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d9"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d10"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d11"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d12"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717340599883_1011586928",
+      "id": "paragraph_1717340599883_1011586928",
+      "dateCreated": "2024-06-02 15:03:19.883",
+      "dateStarted": "2024-06-05 20:34:16.273",
+      "dateFinished": "2024-06-05 20:34:29.074",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nCertaines zone de pickup rapporte de bien meilleures pourboire que d\u0027autre en moyenne (x20 entre la zone avec la moyenne la plus élevée et la zone avec la moyenne la plus faible).",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:29.086",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eCertaines zone de pickup rapporte de bien meilleures pourboire que d\u0026rsquo;autre en moyenne (x20 entre la zone avec la moyenne la plus élevée et la zone avec la moyenne la plus faible).\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717591412414_529396470",
+      "id": "paragraph_1717591412414_529396470",
+      "dateCreated": "2024-06-05 12:43:32.414",
+      "dateStarted": "2024-06-05 20:34:29.096",
+      "dateFinished": "2024-06-05 20:34:29.101",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nCorrélation entre les colonnes\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:29.195",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eCorrélation entre les colonnes\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717591575721_752963647",
+      "id": "paragraph_1717591575721_752963647",
+      "dateCreated": "2024-06-05 12:46:15.721",
+      "dateStarted": "2024-06-05 20:34:29.205",
+      "dateFinished": "2024-06-05 20:34:29.209",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// la moyenne du pourboire est-elle plus corrélées avec la distance qu\u0027avec la zone de pickup  ?\nval startTime \u003d System.nanoTime()\n\n\nval correlationTipDistance \u003d cleanDF.stat.corr(\"tip_amount\", \"trip_distance\")\nval correlationTipPickupZone \u003d cleanDF.stat.corr(\"tip_amount\", \"PULocationID\")\n\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\n\nprint(s\"\\tCorrelation entre le pourboire et la distance: ${correlationTipDistance}\")\nprint(s\"\\tCorrelation entre le pourboire et la zone de pickup: ${correlationTipPickupZone}\")\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:29.305",
+      "progress": 92,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\tTemps d\u0027exécution: 18.1s\n\tCorrelation entre le pourboire et la distance: 0.5348685466022272\tCorrelation entre le pourboire et la zone de pickup: -0.035118403062863165val \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 835163867111\nval \u001b[1m\u001b[34mcorrelationTipDistance\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 0.5348685466022272\nval \u001b[1m\u001b[34mcorrelationTipPickupZone\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d -0.035118403062863165\nval \u001b[1m\u001b[34mduration\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 18.140428286\nval \u001b[1m\u001b[34mformattedDuration\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 18.1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d13"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d14"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d15"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d16"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717340946513_477276762",
+      "id": "paragraph_1717340946513_477276762",
+      "dateCreated": "2024-06-02 15:09:06.514",
+      "dateStarted": "2024-06-05 20:34:29.314",
+      "dateFinished": "2024-06-05 20:34:47.600",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nIl semble que le pourboire soit fortement corrélés à la distance du trajet.\nCe n\u0027est pas particulièrement intéressant de pouvoir estimer le pourboire en fonction de la distance, puisque cette information ne peut pas être connue à l\u0027avance pour le chauffeur de taxi sauf si la zone de pickup est corrélée à la distance. C\u0027est ce que nous allons tester ",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:47.635",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eIl semble que le pourboire soit fortement corrélés à la distance du trajet.\u003cbr /\u003e\nCe n\u0026rsquo;est pas particulièrement intéressant de pouvoir estimer le pourboire en fonction de la distance, puisque cette information ne peut pas être connue à l\u0026rsquo;avance pour le chauffeur de taxi sauf si la zone de pickup est corrélée à la distance. C\u0026rsquo;est ce que nous allons tester\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717341657151_2119947618",
+      "id": "paragraph_1717341657151_2119947618",
+      "dateCreated": "2024-06-02 15:20:57.151",
+      "dateStarted": "2024-06-05 20:34:47.643",
+      "dateFinished": "2024-06-05 20:34:47.647",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// on essaie de voir si la zone de pickup est corrélées à la distance et donc indirectement au pourboire\n\nval correlationDistPickupZone \u003d cleanDF.stat.corr(\"trip_distance\", \"PULocationID\")\n\nprint(correlationDistPickupZone)",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:47.743",
+      "progress": 92,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "-0.08230061533942903val \u001b[1m\u001b[34mcorrelationDistPickupZone\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d -0.08230061533942903\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d17"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d18"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717341520726_1271250550",
+      "id": "paragraph_1717341520726_1271250550",
+      "dateCreated": "2024-06-02 15:18:40.726",
+      "dateStarted": "2024-06-05 20:34:47.750",
+      "dateFinished": "2024-06-05 20:34:56.571",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nCe n\u0027est pas corrélés mais peut-être y a-t-il un petit nombre de zone de pickup qui mène a des trajet plus long en moyenne\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 23:09:05.619",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eCe n\u0026rsquo;est pas corrélés mais peut-être y a-t-il un petit nombre de zone de pickup qui mène a des trajet plus long en moyenne\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717342439002_1812347487",
+      "id": "paragraph_1717342439002_1812347487",
+      "dateCreated": "2024-06-02 15:33:59.002",
+      "dateStarted": "2024-06-05 23:09:05.622",
+      "dateFinished": "2024-06-05 23:09:05.750",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval avgDistanceByLocationPickupDF \u003d cleanDF.groupBy($\"PULocationID\")\n  .agg(avg($\"trip_distance\").alias(\"avg_trip_distance\"))\n  .orderBy($\"avg_trip_distance\".desc)\navgDistanceByLocationPickupDF.describe().show()  \navgDistanceByLocationPickupDF.show(265)\n  ",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:34:56.767",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+---------------+------------------+\n|summary|   PULocationID| avg_trip_distance|\n+-------+---------------+------------------+\n|  count|            265|               265|\n|   mean|          133.0| 5.623076400542772|\n| stddev|76.643112323722|3.3831680737357623|\n|    min|              1|1.8433099413069438|\n|    max|            265|30.174153549630585|\n+-------+---------------+------------------+\n\n+------------+------------------+\n|PULocationID| avg_trip_distance|\n+------------+------------------+\n|          44|30.174153549630585|\n|           5| 17.89593068035943|\n|         204|17.575606060606063|\n|          23|17.375598901098904|\n|         132| 16.00431794491235|\n|         219|14.601302477884753|\n|          86|14.511436232612711|\n|          10| 14.50363989959301|\n|          99|14.457416413373856|\n|         117|13.947088944305904|\n|         215|13.474979169296807|\n|          84|11.229716312056738|\n|          38|11.020691865900893|\n|         201|10.964624121146564|\n|         130| 10.77520222964518|\n|          64|10.585860591900312|\n|         109|10.321477272727273|\n|         203|10.316675809684565|\n|         176| 10.19376744186047|\n|         139|10.182396471819404|\n|          55| 10.14720709570957|\n|         154|10.056195808211314|\n|         124| 9.822690145502644|\n|         214|  9.79774489795918|\n|         138| 9.713040675574812|\n|         101|  9.69229982134156|\n|         172|          9.687125|\n|          51|  9.48528532050906|\n|          93|  9.43019470181578|\n|         187| 9.303117505995202|\n|         191| 9.132780534877309|\n|         156| 9.125100775193799|\n|          28|  9.11754619412633|\n|          70| 8.937537285210114|\n|         205|  8.84782707253886|\n|         210|  8.81304206619239|\n|         183| 8.795942408376963|\n|         253| 8.787594031706556|\n|         252| 8.785473863153424|\n|         222| 8.700762819770805|\n|          46| 8.639522292993624|\n|         216| 8.629867195043962|\n|          81| 8.508790439720059|\n|         108|  8.49856930840012|\n|         150| 8.426953702035673|\n|          15| 8.421927832450164|\n|         155| 8.375088219004663|\n|          30| 8.280243055555557|\n|         218| 8.200351654076583|\n|         118| 8.135798728020951|\n|          39| 7.778429515496349|\n|         254| 7.621082302238287|\n|          11| 7.619317162086378|\n|          16| 7.612160388502428|\n|         208| 7.524195568400769|\n|         200| 7.493486082181407|\n|         251| 7.481176470588232|\n|         175| 7.445433703616162|\n|          29| 7.385943053510066|\n|         259| 7.357056297156125|\n|         149| 7.288113188376345|\n|         184| 7.126895238095239|\n|         248| 7.060911149352414|\n|           3| 7.055828251194989|\n|         180| 7.028808660905124|\n|           2| 6.821991988346683|\n|          32| 6.820834050928774|\n|          31| 6.803057907988099|\n|          58| 6.786292004634992|\n|          53| 6.749980002105041|\n|         135| 6.687416262371431|\n|          76| 6.654598042311338|\n|         171| 6.628580414271773|\n|          98| 6.561425061425064|\n|         115| 6.496331510307109|\n|         131| 6.469923122412773|\n|          19| 6.384754562974718|\n|         213| 6.373713012139604|\n|         240| 6.253807936988792|\n|          56| 6.226875244236032|\n|          22| 6.219612158124569|\n|          21| 6.212795271954932|\n|         121| 6.165316550535703|\n|         197| 6.121832601866907|\n|          91|  6.07302560284568|\n|          14| 6.037363861858428|\n|         174| 6.012249353415488|\n|          63| 5.999223546121674|\n|          77|  5.99519064202161|\n|         194|5.9481011882519965|\n|         122| 5.943917643229164|\n|           1| 5.939137026716929|\n|         195| 5.934771521711966|\n|           9|5.9162927044302425|\n|         182|5.9007287667542245|\n|          35|5.8605091419437825|\n|          67| 5.818238187967613|\n|         258| 5.787959171837847|\n|          27| 5.767282229965157|\n|         136| 5.737782558139533|\n|          59| 5.706366666666667|\n|         134| 5.700585612215593|\n|          73| 5.690104841196426|\n|         206| 5.674287454323994|\n|          57| 5.661627906976744|\n|         241|  5.62192281854147|\n|          71|5.5335636104464685|\n|         192| 5.401789227543944|\n|          20| 5.336993565300287|\n|          78| 5.334011818311265|\n|         157| 5.326526868835837|\n|         235| 5.304361624424804|\n|          72| 5.274711337394309|\n|         185| 5.263671787567402|\n|         120| 5.238672104404566|\n|         242| 5.193822777928786|\n|         147| 5.144370894909691|\n|         126| 5.121799192974127|\n|         245| 5.042383367139962|\n|         227| 5.027282714251032|\n|         160| 5.005114102429279|\n|          92| 4.992172863599014|\n|         196| 4.963949023108202|\n|         212| 4.946477044365436|\n|           8| 4.935652624565041|\n|         123| 4.914035458269327|\n|          18| 4.909206214088102|\n|         165| 4.902468327523167|\n|         102| 4.898225104298932|\n|         221|4.8946756469337105|\n|          60| 4.811297464851101|\n|         128| 4.807555401662049|\n|         220| 4.798902674706246|\n|         250| 4.790329831419496|\n|         177| 4.787471017324476|\n|          96| 4.768454865817295|\n|          89| 4.683816638370119|\n|          88|   4.6752840547527|\n|          95| 4.645304005685084|\n|         127| 4.640410964921913|\n|          47| 4.633283650689429|\n|         133| 4.538156120142888|\n|         257| 4.531674571805005|\n|         119| 4.513591084971366|\n|          85| 4.485710167424327|\n|         228| 4.463591344373313|\n|          94| 4.455765065613453|\n|          26| 4.451240245963539|\n|         243| 4.412310549210143|\n|         169|4.4123006636966995|\n|          87| 4.382080911381574|\n|          12|4.3575116574921235|\n|         207| 4.303245977454475|\n|         244| 4.291763534736352|\n|           6| 4.287124722310378|\n|         153|  4.25410604192355|\n|         178| 4.175920879842416|\n|          33|  4.12736713174408|\n|         261| 4.110463131176522|\n|          13| 4.087775915712716|\n|         223| 4.041471732582034|\n|          65| 4.032250209082576|\n|          54| 4.026774838311288|\n|         202| 4.025976327885224|\n|          66| 4.013423910467829|\n|          69| 3.991980704122501|\n|         188|3.9900969952633614|\n|         209| 3.968285528448898|\n|          52|3.9620743441395625|\n|         198|3.9417868873998154|\n|         167| 3.909688938547488|\n|         265| 3.882904474381953|\n|         105|3.8088053491827623|\n|         103| 3.783636363636364|\n|         199|3.7742427497314717|\n|          40| 3.753552334027443|\n|         145|3.7475087580482622|\n|         190|  3.73835912309136|\n|         247|3.7325530723686215|\n|          62| 3.721071272849237|\n|          61|3.7037607618452464|\n|          82|3.6528851013751398|\n|         168|3.6526455814178673|\n|         104|  3.62780487804878|\n|         226|3.6086253268806288|\n|         106|  3.55217213998726|\n|          25| 3.522838420244547|\n|         181|3.5146860302789857|\n|         129|3.5025345293610965|\n|         260|3.4944268730489996|\n|          83|3.4911074783637845|\n|         173|3.4900512279176623|\n|         116| 3.475584988289987|\n|          36| 3.447684936795818|\n|         146|3.4407906182382693|\n|         159|3.4231662401139173|\n|          97|3.4215561978473152|\n|         225|3.3797162348656227|\n|         189|3.3546773561257326|\n|         255|3.3480349525047184|\n|         179| 3.338249666352406|\n|         112| 3.323915610816061|\n|         232|  3.26755304949801|\n|          80|3.2505934659171976|\n|          37| 3.225810789182575|\n|         256| 3.199931564278976|\n|          34|3.1861675355602768|\n|          49|3.1814273489903955|\n|           7|3.1385008990724126|\n|         193|3.1338852573440166|\n|         111|3.1247105704697993|\n|         110| 3.092293577981652|\n|          45|3.0849947935145123|\n|         152|3.0465882943515323|\n|         231| 3.039056708418123|\n|          17| 3.038913051128799|\n|         148| 3.015841766065782|\n|         264|2.9965258468473794|\n|         166| 2.880602017746876|\n|         230|2.8683314192402354|\n|         217|2.8024044496259566|\n|           4|2.7641860819258577|\n|          42|2.6971191923651086|\n|         125| 2.673760954928317|\n|          74| 2.660533981924373|\n|          24| 2.656960578982424|\n|         144|  2.61915738508645|\n|          50|2.6002230718766266|\n|          41|2.5831334996254576|\n|         158|2.5754761913019015|\n|         233| 2.563768316469316|\n|          79|2.5513030663919514|\n|         211| 2.545112821621988|\n|          75|   2.5381202602225|\n|         262|2.5310036749087375|\n|          48| 2.525444939849333|\n|         140| 2.518691345817552|\n|         224|2.4926780052285746|\n|         114|  2.48728485147611|\n|         151| 2.463601680013596|\n|         246|2.4433598590685865|\n|         163| 2.442117861420369|\n|         162| 2.433677844337978|\n|         164|2.4315562933729247|\n|         161|2.4124583863097557|\n|          68|2.4113894816997252|\n|         263| 2.399856838562453|\n|         100|2.3792112305614435|\n|         249|2.3726589475700863|\n|         186| 2.344187428184807|\n|         238|2.3090358934712087|\n|         137|2.3081234567005193|\n|         170|2.3068957047407306|\n|         229|2.2521742867483177|\n|         239|2.2424665898456184|\n|         143| 2.228541698455458|\n|         142|2.2251261621704956|\n|         107| 2.221706824547297|\n|          43| 2.209624808963005|\n|         113| 2.181617323920711|\n|         234|2.1584421947938117|\n|          90|2.1414799657667203|\n|         141|2.1274935240029356|\n|         236|2.0117886137446996|\n|         237|1.8433099413069438|\n+------------+------------------+\n\nval \u001b[1m\u001b[34mavgDistanceByLocationPickupDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [PULocationID: bigint, avg_trip_distance: double]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d19"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d20"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d21"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d22"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d23"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d24"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d25"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717342384607_668151461",
+      "id": "paragraph_1717342384607_668151461",
+      "dateCreated": "2024-06-02 15:33:04.607",
+      "dateStarted": "2024-06-05 20:34:56.776",
+      "dateFinished": "2024-06-05 20:35:18.968",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nLa zone de pickup 44 donne lieu a des trajet bien plus long en moyenne et certaines zone ont des trajets beaucoup moins long (p.ex la 237 donne lieu a des trajet de seulement 2 miles en moyenne)\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:35:19.000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eLa zone de pickup 44 donne lieu a des trajet bien plus long en moyenne et certaines zone ont des trajets beaucoup moins long (p.ex la 237 donne lieu a des trajet de seulement 2 miles en moyenne)\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717342847532_780676098",
+      "id": "paragraph_1717342847532_780676098",
+      "dateCreated": "2024-06-02 15:40:47.532",
+      "dateStarted": "2024-06-05 20:35:19.008",
+      "dateFinished": "2024-06-05 20:35:19.011",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n# Machine Learning\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:35:19.107",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eMachine Learning\u003c/h1\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717343266794_1193249973",
+      "id": "paragraph_1717343266794_1193249973",
+      "dateCreated": "2024-06-02 15:47:46.794",
+      "dateStarted": "2024-06-05 20:35:19.119",
+      "dateFinished": "2024-06-05 20:35:19.122",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nTest d\u0027une simple régression linéaire pour estimer le pourboire en fonction de la zone de pickup",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:35:19.219",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eTest d\u0026rsquo;une simple régression linéaire pour estimer le pourboire en fonction de la zone de pickup\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717591862145_395785800",
+      "id": "paragraph_1717591862145_395785800",
+      "dateCreated": "2024-06-05 12:51:02.145",
+      "dateStarted": "2024-06-05 20:35:19.229",
+      "dateFinished": "2024-06-05 20:35:19.233",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// préparation du dataset\n\nimport org.apache.spark.ml.feature.RFormula\n\nval supervised \u003d new RFormula().setFormula(\"tip_amount ~ PULocationID\")\n\nval fitted \u003d supervised.fit(cleanDF)\n\nval preparedDF \u003d fitted.transform(cleanDF)\n\npreparedDF.show()\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 20:35:19.329",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+--------+-----+\n|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|PULocationID|DOLocationID|payment_type|tip_amount|total_amount|features|label|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+--------+-----+\n| 2013-01-01 00:39:00|  2013-01-01 00:55:00|            3.0|         3.86|         238|         116|           2|       0.0|        16.0| [238.0]|  0.0|\n| 2013-01-01 00:07:00|  2013-01-01 00:21:00|            1.0|         1.76|          79|         186|           2|       0.0|        11.5|  [79.0]|  0.0|\n| 2013-01-01 00:29:00|  2013-01-01 00:35:00|            1.0|         0.94|         234|         249|           1|       1.3|         8.3| [234.0]|  1.3|\n| 2013-01-01 00:36:00|  2013-01-01 00:46:00|            1.0|         1.97|         249|          13|           1|       1.5|        11.5| [249.0]|  1.5|\n| 2013-01-01 00:52:00|  2013-01-01 00:53:00|            1.0|         0.53|         231|         231|           2|       0.0|         4.5| [231.0]|  0.0|\n| 2013-01-01 00:56:00|  2013-01-01 01:06:00|            1.0|         1.76|         231|         261|           1|       1.0|        11.0| [231.0]|  1.0|\n| 2013-01-01 00:13:33|  2013-01-01 00:19:33|            1.0|          0.7|         164|         186|           2|       0.0|         6.5| [164.0]|  0.0|\n| 2013-01-01 00:28:40|  2013-01-01 00:56:44|            1.0|          9.4|         161|         243|           1|       0.0|        32.0| [161.0]|  0.0|\n| 2013-01-01 00:07:08|  2013-01-01 00:30:15|            1.0|          3.2|          17|          37|           1|       3.0|        18.0|  [17.0]|  3.0|\n| 2013-01-01 00:34:52|  2013-01-01 00:53:38|            2.0|          2.4|          37|         256|           2|       0.0|        12.5|  [37.0]|  0.0|\n| 2013-01-01 00:55:51|  2013-01-01 01:21:54|            4.0|          3.8|         256|          36|           2|       0.0|        17.5| [256.0]|  0.0|\n| 2013-01-01 00:05:47|  2013-01-01 00:16:21|            1.0|          2.4|         231|          90|           2|       0.0|        11.0| [231.0]|  0.0|\n| 2013-01-01 00:31:01|  2013-01-01 00:55:12|            1.0|          2.4|         249|          48|           1|       3.0|        20.0| [249.0]|  3.0|\n| 2013-01-01 00:57:04|  2013-01-01 01:47:21|            1.0|          4.5|          48|         211|           2|       0.0|        31.5|  [48.0]|  0.0|\n| 2013-01-01 00:15:41|  2013-01-01 00:54:33|            2.0|         18.6|         132|          68|           1|       6.0|        63.3| [132.0]|  6.0|\n| 2013-01-01 00:57:05|  2013-01-01 01:10:55|            1.0|          2.1|          68|         144|           2|       0.0|        11.5|  [68.0]|  0.0|\n| 2013-01-01 00:12:00|  2013-01-01 00:27:13|            1.0|          3.5|         232|         170|           2|       0.0|        15.5| [232.0]|  0.0|\n| 2013-01-01 00:45:09|  2013-01-01 00:47:57|            4.0|          0.5|         170|         170|           2|       0.0|         5.0| [170.0]|  0.0|\n| 2013-01-01 00:52:18|  2013-01-01 01:05:49|            1.0|          1.1|         162|         186|           2|       0.0|        10.5| [162.0]|  0.0|\n| 2013-01-01 00:13:34|  2013-01-01 00:18:57|            2.0|          0.8|         262|         236|           2|       0.0|         6.5| [262.0]|  0.0|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+--------+-----+\nonly showing top 20 rows\n\nimport org.apache.spark.ml.feature.RFormula\nval \u001b[1m\u001b[34msupervised\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.RFormula\u001b[0m \u003d RFormula: uid\u003drFormula_18e044e62f01, formula \u003d tip_amount ~ PULocationID\nval \u001b[1m\u001b[34mfitted\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.RFormulaModel\u001b[0m \u003d RFormulaModel: uid\u003drFormula_18e044e62f01, resolvedFormula\u003dResolvedRFormula(label\u003dtip_amount, terms\u003d[PULocationID], hasIntercept\u003dtrue)\nval \u001b[1m\u001b[34mpreparedDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 9 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d26"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717343142800_2018082304",
+      "id": "paragraph_1717343142800_2018082304",
+      "dateCreated": "2024-06-02 15:45:42.801",
+      "dateStarted": "2024-06-05 20:35:19.338",
+      "dateFinished": "2024-06-05 20:35:20.578",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.sql.SparkSession\nimport org.apache.spark.ml.feature.RFormula\nimport org.apache.spark.ml.regression.GeneralizedLinearRegression\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\n\n\nval Array(trainingDF, testDF) \u003d preparedDF.randomSplit(Array(0.8, 0.2), seed \u003d 12345)\n\n\n\n\nval glr \u003d new GeneralizedLinearRegression()\n  .setFamily(\"gaussian\")\n  .setLink(\"identity\")\n  .setMaxIter(10)\n  .setRegParam(0.3)\n  \nval startTime \u003d System.nanoTime()\n\nval model \u003d glr.fit(trainingDF)\n\n\n// val preparedTestDF \u003d fitted.transform(testDF)\n\n\nval predictions \u003d model.transform(testDF)\n\n// Évaluation du modèle\nval evaluatorRMSE \u003d new RegressionEvaluator()\n  .setLabelCol(\"label\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"rmse\")\n  \nval maeEvaluator \u003d new RegressionEvaluator()\n  .setLabelCol(\"label\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"mae\")\n  \n\n\n\nval rmse \u003d evaluatorRMSE.evaluate(predictions)\nprintln(s\"Root Mean Squared Error (RMSE) on test data \u003d $rmse\")\n\nval mae \u003d maeEvaluator.evaluate(predictions)\nprintln(s\"Mean Absolute Error (MAE) on test data \u003d $mae\")\n\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\n\nval summary \u003d model.summary\nprintln(s\"Coefficient Standard Errors: ${summary.coefficientStandardErrors.mkString(\",\")}\")\nprintln(s\"T Values: ${summary.tValues.mkString(\",\")}\")\nprintln(s\"P Values: ${summary.pValues.mkString(\",\")}\")\nprintln(s\"Dispersion: ${summary.dispersion}\")\nprintln(s\"Null Deviance: ${summary.nullDeviance}\")\nprintln(s\"Residual Degree Of Freedom Null: ${summary.residualDegreeOfFreedomNull}\")\nprintln(s\"Deviance: ${summary.deviance}\")\nprintln(s\"Residual Degree Of Freedom: ${summary.residualDegreeOfFreedom}\")\nprintln(s\"AIC: ${summary.aic}\")\nprintln(\"Deviance Residuals: \")\nsummary.residuals().show()\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 23:08:49.298",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Root Mean Squared Error (RMSE) on test data \u003d 2.5703141510822496\nMean Absolute Error (MAE) on test data \u003d 1.6269601840170642\n\tTemps d\u0027exécution: 898.8s\nCoefficient Standard Errors: 1.270728165840923E-6,2.2534083948721575E-4\nT Values: -954.4119433865433,8971.105918365329\nP Values: 0.0,0.0\nDispersion: 6.601076116307505\nNull Deviance: 5.436313245490834E9\nResidual Degree Of Freedom Null: 822543457\nDeviance: 5.429671962026633E9\nResidual Degree Of Freedom: 822543456\nAIC: 3.886608117257223E9\nDeviance Residuals: \n+--------------------+\n|   devianceResiduals|\n+--------------------+\n| -1.7122930135127281|\n| -0.9124047063283098|\n| -0.8377617744165294|\n| -1.7025906284065182|\n| -1.7025906284065182|\n| -1.9160431007431387|\n|-0.43291058186342446|\n|  -1.735336178139977|\n| -1.7474641595227394|\n|-0.07320819675721446|\n|  -1.822657644095867|\n| -1.8384240198934585|\n| -0.9390862653703875|\n| -1.9815342002100562|\n| -0.7377617744165295|\n| -1.8384240198934585|\n|  -1.735336178139977|\n| -1.8493392031379448|\n| 0.08759529367169017|\n|0.057342355904132836|\n+--------------------+\nonly showing top 20 rows\n\nimport org.apache.spark.sql.SparkSession\nimport org.apache.spark.ml.feature.RFormula\nimport org.apache.spark.ml.regression.GeneralizedLinearRegression\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nval \u001b[1m\u001b[34mtrainingDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 9 more fields]\nval \u001b[1m\u001b[34mtestDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 9 more fields]\nval \u001b[1m\u001b[34mglr\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.regression.GeneralizedLinearRegression\u001b[0m \u003d glm_45a2c0e5332e\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 886709938977\nval \u001b[1m\u001b[34mmodel\u001b[0m: \u001b[1m\u001b[32...\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d27"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d28"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d29"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d30"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d31"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d32"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d33"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d34"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717362056973_1669797776",
+      "id": "paragraph_1717362056973_1669797776",
+      "dateCreated": "2024-06-02 21:00:56.973",
+      "dateStarted": "2024-06-05 20:35:20.648",
+      "dateFinished": "2024-06-05 21:05:15.974",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\nIl y a plusieurs problèmes avec ce modèle, déjà, la date a très certainement une influence sur le pourboire que ce soit le jour de la semaine, si la course et faite de nuit ou de jour sans parler de l\u0027inflation au fil des années. De même, beaucoup d\u0027autres features sont corrélées (nombre de kilomètres moyen dépend de la zone). Il faut prendre ces paramètres en compte pendant l\u0027entrainement. De même un autre algorithme, tel que random tree ou random forest nous semble plus adapté.\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 13:16:19.713",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eIl y a plusieurs problèmes avec ce modèle, déjà, la date a très certainement une influence sur le pourboire que ce soit le jour de la semaine, si la course et faite de nuit ou de jour sans parler de l\u0026rsquo;inflation au fil des années. De même, beaucoup d\u0026rsquo;autres features sont corrélées (nombre de kilomètres moyen dépend de la zone). Il faut prendre ces paramètres en compte pendant l\u0026rsquo;entrainement. De même un autre algorithme, tel que random tree ou random forest nous semble plus adapté.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717449014528_1709399789",
+      "id": "paragraph_1717449014528_1709399789",
+      "dateCreated": "2024-06-03 21:10:14.528",
+      "dateStarted": "2024-06-05 13:16:19.714",
+      "dateFinished": "2024-06-05 13:16:19.723",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n//Ajout de features relatives à la date\nimport org.apache.spark.sql.functions._\n\nval AugmentedDF \u003d cleanDF\n  .withColumn(\"year\", substring(year(col(\"tpep_pickup_datetime\")).cast(\"string\"), 3, 2).cast(\"int\"))\n  .withColumn(\"month\", month(col(\"tpep_pickup_datetime\")))\n  .withColumn(\"weekday\", (dayofweek(col(\"tpep_pickup_datetime\")) + 5) % 7 + 1)\n  .withColumn(\"hour\", hour(col(\"tpep_pickup_datetime\")))\n  \n  \nAugmentedDF.show()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 21:05:29.982",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+----+-----+-------+----+\n|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|PULocationID|DOLocationID|payment_type|tip_amount|total_amount|year|month|weekday|hour|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+----+-----+-------+----+\n| 2013-01-01 00:39:00|  2013-01-01 00:55:00|            3.0|         3.86|         238|         116|           2|       0.0|        16.0|  13|    1|      2|   0|\n| 2013-01-01 00:07:00|  2013-01-01 00:21:00|            1.0|         1.76|          79|         186|           2|       0.0|        11.5|  13|    1|      2|   0|\n| 2013-01-01 00:29:00|  2013-01-01 00:35:00|            1.0|         0.94|         234|         249|           1|       1.3|         8.3|  13|    1|      2|   0|\n| 2013-01-01 00:36:00|  2013-01-01 00:46:00|            1.0|         1.97|         249|          13|           1|       1.5|        11.5|  13|    1|      2|   0|\n| 2013-01-01 00:52:00|  2013-01-01 00:53:00|            1.0|         0.53|         231|         231|           2|       0.0|         4.5|  13|    1|      2|   0|\n| 2013-01-01 00:56:00|  2013-01-01 01:06:00|            1.0|         1.76|         231|         261|           1|       1.0|        11.0|  13|    1|      2|   0|\n| 2013-01-01 00:13:33|  2013-01-01 00:19:33|            1.0|          0.7|         164|         186|           2|       0.0|         6.5|  13|    1|      2|   0|\n| 2013-01-01 00:28:40|  2013-01-01 00:56:44|            1.0|          9.4|         161|         243|           1|       0.0|        32.0|  13|    1|      2|   0|\n| 2013-01-01 00:07:08|  2013-01-01 00:30:15|            1.0|          3.2|          17|          37|           1|       3.0|        18.0|  13|    1|      2|   0|\n| 2013-01-01 00:34:52|  2013-01-01 00:53:38|            2.0|          2.4|          37|         256|           2|       0.0|        12.5|  13|    1|      2|   0|\n| 2013-01-01 00:55:51|  2013-01-01 01:21:54|            4.0|          3.8|         256|          36|           2|       0.0|        17.5|  13|    1|      2|   0|\n| 2013-01-01 00:05:47|  2013-01-01 00:16:21|            1.0|          2.4|         231|          90|           2|       0.0|        11.0|  13|    1|      2|   0|\n| 2013-01-01 00:31:01|  2013-01-01 00:55:12|            1.0|          2.4|         249|          48|           1|       3.0|        20.0|  13|    1|      2|   0|\n| 2013-01-01 00:57:04|  2013-01-01 01:47:21|            1.0|          4.5|          48|         211|           2|       0.0|        31.5|  13|    1|      2|   0|\n| 2013-01-01 00:15:41|  2013-01-01 00:54:33|            2.0|         18.6|         132|          68|           1|       6.0|        63.3|  13|    1|      2|   0|\n| 2013-01-01 00:57:05|  2013-01-01 01:10:55|            1.0|          2.1|          68|         144|           2|       0.0|        11.5|  13|    1|      2|   0|\n| 2013-01-01 00:12:00|  2013-01-01 00:27:13|            1.0|          3.5|         232|         170|           2|       0.0|        15.5|  13|    1|      2|   0|\n| 2013-01-01 00:45:09|  2013-01-01 00:47:57|            4.0|          0.5|         170|         170|           2|       0.0|         5.0|  13|    1|      2|   0|\n| 2013-01-01 00:52:18|  2013-01-01 01:05:49|            1.0|          1.1|         162|         186|           2|       0.0|        10.5|  13|    1|      2|   0|\n| 2013-01-01 00:13:34|  2013-01-01 00:18:57|            2.0|          0.8|         262|         236|           2|       0.0|         6.5|  13|    1|      2|   0|\n+--------------------+---------------------+---------------+-------------+------------+------------+------------+----------+------------+----+-----+-------+----+\nonly showing top 20 rows\n\nimport org.apache.spark.sql.functions._\nval \u001b[1m\u001b[34mAugmentedDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 11 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d35"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717449432432_1655104004",
+      "id": "paragraph_1717449432432_1655104004",
+      "dateCreated": "2024-06-03 21:17:12.432",
+      "dateStarted": "2024-06-05 21:05:29.991",
+      "dateFinished": "2024-06-05 21:05:31.079",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// l\u0027algorithme random forest prend bien trop de temps avec la totalité des données (2 heures 0% + plantage), les données sont donc allégées (~0.1% des données initiales)\nval shuffledDF \u003d AugmentedDF.orderBy(rand())\nval AugmentedLightDF \u003d shuffledDF.limit(100000)",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 21:05:38.546",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "val \u001b[1m\u001b[34mshuffledDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 11 more fields]\nval \u001b[1m\u001b[34mAugmentedLightDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 11 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717518066899_1601523970",
+      "id": "paragraph_1717518066899_1601523970",
+      "dateCreated": "2024-06-04 16:21:06.899",
+      "dateStarted": "2024-06-05 21:05:38.555",
+      "dateFinished": "2024-06-05 21:05:38.651",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nimport org.apache.spark.ml.feature.VectorIndexer\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.regression.{RandomForestRegressionModel, RandomForestRegressor}\n\nval assembler \u003d new VectorAssembler()\n  .setInputCols(Array(\"PULocationID\", \"trip_distance\", \"year\", \"month\", \"weekday\", \"hour\"))\n  .setOutputCol(\"features\")\n\nval featureDF \u003d assembler.transform(AugmentedLightDF)\n\n\nval featureIndexer \u003d new VectorIndexer()\n  .setInputCol(\"features\")\n  .setOutputCol(\"indexedFeatures\")\n  .setMaxCategories(24) // nombre de zones de pickup\n  .fit(featureDF)\n  \nval Array(trainingData, testData) \u003d featureDF.randomSplit(Array(0.8, 0.2))",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 21:05:43.930",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nimport org.apache.spark.ml.feature.VectorIndexer\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.regression.{RandomForestRegressionModel, RandomForestRegressor}\nval \u001b[1m\u001b[34massembler\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorAssembler\u001b[0m \u003d VectorAssembler: uid\u003dvecAssembler_ad29d076ddd7, handleInvalid\u003derror, numInputCols\u003d6\nval \u001b[1m\u001b[34mfeatureDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 12 more fields]\nval \u001b[1m\u001b[34mfeatureIndexer\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorIndexerModel\u001b[0m \u003d VectorIndexerModel: uid\u003dvecIdx_849a9a50ff7e, numFeatures\u003d6, handleInvalid\u003derr...\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d36"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717615253736_2010260768",
+      "id": "paragraph_1717615253736_2010260768",
+      "dateCreated": "2024-06-05 19:20:53.736",
+      "dateStarted": "2024-06-05 21:05:43.938",
+      "dateFinished": "2024-06-05 21:07:52.371",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Random forest toutes les features\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nimport org.apache.spark.ml.feature.VectorIndexer\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.regression.{RandomForestRegressionModel, RandomForestRegressor}\n\n// prise en compte des features relatives à la date ainsi que la distance du trajet (PULocationID)\nval assembler \u003d new VectorAssembler()\n  .setInputCols(Array(\"PULocationID\", \"trip_distance\", \"year\", \"month\", \"weekday\", \"hour\"))\n  .setOutputCol(\"features\")\n\nval featureDF \u003d assembler.transform(AugmentedLightDF)\n\n\nval featureIndexer \u003d new VectorIndexer()\n  .setInputCol(\"features\")\n  .setOutputCol(\"indexedFeatures\")\n  .setMaxCategories(24) // nombre de zones de pickup\n  .fit(featureDF)\n  \nval Array(trainingData, testData) \u003d featureDF.randomSplit(Array(0.8, 0.2))\n\n\nval rf \u003d new RandomForestRegressor()\n  .setLabelCol(\"tip_amount\")\n  .setFeaturesCol(\"indexedFeatures\")\n\n\nval pipeline \u003d new Pipeline()\n  .setStages(Array(featureIndexer, rf))\n  \nval startTime \u003d System.nanoTime()\n\nval model \u003d pipeline.fit(trainingData)\n\n\nval predictions \u003d model.transform(testData)\n\n\npredictions.select(\"prediction\", \"tip_amount\", \"features\").show(20)\n\n\nval maeEvaluator \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"mae\")\n\n\nval evaluator \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"rmse\")\n  \n\nval rmse \u003d evaluator.evaluate(predictions)\nprintln(s\"Root Mean Squared Error (RMSE) on test data \u003d $rmse\")\n\nval mae \u003d maeEvaluator.evaluate(predictions)\nprintln(s\"Mean Average Error (MAE) on test data \u003d $mae\")\n\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\n\nval rfModel \u003d model.stages(1).asInstanceOf[RandomForestRegressionModel]\n//println(s\"Learned regression forest model:\\n ${rfModel.toDebugString}\")\n \n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 21:05:51.759",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+----------+--------------------+\n|        prediction|tip_amount|            features|\n+------------------+----------+--------------------+\n|1.8109381551955213|       3.0|[74.0,3.34,13.0,1...|\n|1.0637159127599183|       1.6|[170.0,1.2,13.0,1...|\n|1.0892632657762316|       0.0|[141.0,1.7,13.0,1...|\n|1.1245042180128388|       0.0|[4.0,1.6,13.0,1.0...|\n|1.0990431437570896|       0.0|[230.0,1.7,13.0,1...|\n|1.9998432215865976|       0.0|[166.0,5.2,13.0,1...|\n|2.0670748122675286|       0.0|[249.0,6.5,13.0,1...|\n|1.1109516668661894|       0.9|[144.0,1.5,13.0,1...|\n|2.0716855416048428|       3.4|[238.0,5.64,13.0,...|\n|1.4562725694568774|       3.0|[229.0,2.4,13.0,1...|\n|1.0718563311454932|       2.6|[148.0,1.7,13.0,1...|\n| 1.878158941302137|       0.0|[236.0,2.92,13.0,...|\n|1.1680738084622706|       1.0|[233.0,2.1,13.0,1...|\n| 2.061544455637078|      4.75|[229.0,5.4,13.0,1...|\n|1.3351738571945049|       1.8|[170.0,2.2,13.0,1...|\n|1.7480759348198085|       0.0|[88.0,3.8,13.0,1....|\n|1.0311669245580715|       2.3|[143.0,1.9,13.0,1...|\n|1.3248472872920267|       0.0|[93.0,2.41,13.0,1...|\n|2.0629322277546116|       0.0|[138.0,2.93,13.0,...|\n| 1.081078818904467|       0.0|[255.0,1.06,13.0,...|\n+------------------+----------+--------------------+\nonly showing top 20 rows\n\nRoot Mean Squared Error (RMSE) on test data \u003d 2.1281352120421295\nMean Average Error (MAE) on test data \u003d 1.3991712183879392\n\tTemps d\u0027exécution: 640.0s\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nimport org.apache.spark.ml.feature.VectorIndexer\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.regression.{RandomForestRegressionModel, RandomForestRegressor}\nval \u001b[1m\u001b[34massembler\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorAssembler\u001b[0m \u003d VectorAssembler: uid\u003dvecAssembler_611d64075cfa, handleInvalid\u003derror, numInputCols\u003d6\nval \u001b[1m\u001b[34mfeatureDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 12 more fields]\nval \u001b[1m\u001b[34mfeatureIndexer\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorIndexerModel\u001b[0m \u003d VectorIndexerModel: uid\u003dvecIdx_299de34d9467, numFeatures\u003d6, handleInvalid\u003derr...\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d37"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d38"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d39"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d40"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d41"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d42"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d43"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d44"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d45"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d46"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d47"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d48"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717508095603_108014674",
+      "id": "paragraph_1717508095603_108014674",
+      "dateCreated": "2024-06-04 13:34:55.603",
+      "dateStarted": "2024-06-05 21:07:52.379",
+      "dateFinished": "2024-06-05 21:20:34.323",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nLe modèle est meilleur (2.0161771644481967) que la régression linéaire (2.570314151082249). Peut-être une régression linéaire avec toutes les lignes donnerait un meilleur résultat\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 23:08:32.884",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eLe modèle est légèrement meilleur (2.0161771644481967) que la régression linéaire (2.570314151082249). Peut-être une régression linéaire avec toutes les lignes donnerait un meilleur résultat\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717529898042_1626064040",
+      "id": "paragraph_1717529898042_1626064040",
+      "dateCreated": "2024-06-04 19:38:18.042",
+      "dateStarted": "2024-06-04 19:40:30.166",
+      "dateFinished": "2024-06-04 19:40:30.175",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// la régression linéaire avec toutes les features\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.regression.LinearRegression\n\n\n\nval featureDFLinear \u003d assembler.transform(AugmentedDF)\n\n\nval Array(trainingDataLinear, testDataLinear) \u003d featureDFLinear.randomSplit(Array(0.8, 0.2))\n\n\nval lr \u003d new LinearRegression()\n  .setLabelCol(\"tip_amount\")\n  .setFeaturesCol(\"features\")\n  \nval startTime \u003d System.nanoTime()\n\nval lrModel \u003d lr.fit(trainingDataLinear)\n\nval lrPredictions \u003d model.transform(testDataLinear)\n\n\nlrPredictions.select(\"prediction\", \"tip_amount\", \"features\").show(20)\n\n\nval maeEvaluator \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"mae\")\n\n\nval evaluator \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"rmse\")\n  \n\nval rmse \u003d evaluator.evaluate(lrPredictions)\nprintln(s\"Root Mean Squared Error (RMSE) on test data \u003d $rmse\")\n\nval mae \u003d maeEvaluator.evaluate(lrPredictions)\nprintln(s\"Root Mean Squared Error (RMSE) on test data \u003d $mae\")\n\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 23:06:35.986",
+      "progress": 20,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[31merror: \u001b[0merror writing /tmp/spark7516605251219540239/.class: java.nio.file.FileSystemException /tmp/spark7516605251219540239/$line114730878053: Read-only file system\n\u001b[31merror: \u001b[0merror writing /tmp/spark7516605251219540239/class: java.nio.file.FileSystemException /tmp/spark7516605251219540239/$line114730878053: Read-only file system\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 35 in stage 230.0 failed 1 times, most recent failure: Lost task 35.0 in stage 230.0 (TID 7647) (ab98d444dcd5 executor driver): java.io.FileNotFoundException: /tmp/blockmgr-238fa489-2ec9-4dfe-ad6f-e9124e65197b/1c/shuffle_80_7647_0.data.64819be3-0a7f-4862-a0b6-c00ef9bd3d52 (Read-only file system)\n\tat java.io.FileOutputStream.open0(Native Method)\n\tat java.io.FileOutputStream.open(FileOutputStream.java:270)\n\tat java.io.FileOutputStream.\u003cinit\u003e(FileOutputStream.java:213)\n\tat org.apache.spark.shuffle.sort.io.LocalDiskShuffleMapOutputWriter.initStream(LocalDiskShuffleMapOutputWriter.java:144)\n\tat org.apache.spark.shuffle.sort.io.LocalDiskShuffleMapOutputWriter.access$200(LocalDiskShuffleMapOutputWriter.java:45)\n\tat org.apache.spark.shuffle.sort.io.LocalDiskShuffleMapOutputWriter$LocalDiskShufflePartitionWriter.openStream(LocalDiskShuffleMapOutputWriter.java:177)\n\tat org.apache.spark.shuffle.ShufflePartitionPairsWriter.open(ShufflePartitionPairsWriter.scala:69)\n\tat org.apache.spark.shuffle.ShufflePartitionPairsWriter.write(ShufflePartitionPairsWriter.scala:60)\n\tat org.apache.spark.util.collection.WritablePartitionedIterator.writeNext(WritablePartitionedPairCollection.scala:83)\n\tat org.apache.spark.util.collection.ExternalSorter.$anonfun$writePartitionedMapOutput$1(ExternalSorter.scala:719)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)\n\tat org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)\n\tat org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)\n\tat org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)\n\tat org.apache.spark.util.collection.ExternalSorter.writePartitionedMapOutput(ExternalSorter.scala:722)\n\tat org.apache.spark.shuffle.sort.SortShuffleWriter.write(SortShuffleWriter.scala:70)\n\tat org.apache.spark.shuffle.ShuffleWriteProcessor.write(ShuffleWriteProcessor.scala:59)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:104)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:54)\n\tat org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:141)\n\tat org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)\n\tat org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)\n\tat org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)\n\tat org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:750)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)\n  at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)\n  at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)\n  at scala.collection.immutable.List.foreach(List.scala:333)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)\n  at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)\n  at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)\n  at scala.Option.foreach(Option.scala:437)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3060)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:989)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2398)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2493)\n  at org.apache.spark.rdd.RDD.$anonfun$fold$1(RDD.scala:1202)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:410)\n  at org.apache.spark.rdd.RDD.fold(RDD.scala:1196)\n  at org.apache.spark.rdd.RDD.$anonfun$treeAggregate$2(RDD.scala:1289)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:410)\n  at org.apache.spark.rdd.RDD.treeAggregate(RDD.scala:1256)\n  at org.apache.spark.rdd.RDD.$anonfun$treeAggregate$1(RDD.scala:1242)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:410)\n  at org.apache.spark.rdd.RDD.treeAggregate(RDD.scala:1242)\n  at org.apache.spark.ml.optim.WeightedLeastSquares.fit(WeightedLeastSquares.scala:107)\n  at org.apache.spark.ml.regression.LinearRegression.trainWithNormal(LinearRegression.scala:456)\n  at org.apache.spark.ml.regression.LinearRegression.$anonfun$train$1(LinearRegression.scala:354)\n  at org.apache.spark.ml.util.Instrumentation$.$anonfun$instrumented$1(Instrumentation.scala:191)\n  at scala.util.Try$.apply(Try.scala:210)\n  at org.apache.spark.ml.util.Instrumentation$.instrumented(Instrumentation.scala:191)\n  at org.apache.spark.ml.regression.LinearRegression.train(LinearRegression.scala:329)\n  at org.apache.spark.ml.regression.LinearRegression.train(LinearRegression.scala:186)\n  at org.apache.spark.ml.Predictor.fit(Predictor.scala:114)\n  ... 38 elided\nCaused by: java.io.FileNotFoundException: /tmp/blockmgr-238fa489-2ec9-4dfe-ad6f-e9124e65197b/1c/shuffle_80_7647_0.data.64819be3-0a7f-4862-a0b6-c00ef9bd3d52 (Read-only file system)\n  at java.io.FileOutputStream.open0(Native Method)\n  at java.io.FileOutputStream.open(FileOutputStream.java:270)\n  ... 24 elided and 3 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d104"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717505296100_1014547456",
+      "id": "paragraph_1717505296100_1014547456",
+      "dateCreated": "2024-06-04 12:48:16.100",
+      "dateStarted": "2024-06-05 23:06:35.994",
+      "dateFinished": "2024-06-05 23:09:40.675",
+      "status": "ERROR"
+    },
+    {
+      "text": "%md\nMême avec toutes les données, la régression linéaire obtiens de moins bon résultats que la random forest.",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 22:53:55.564",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eMême avec toutes les données, la régression linéaire fait moins bien que la random forest (2.15 vs 2.02) tentons la random forest sans la colonne trip_distance pour voir si il est utile de calculer un coefficient\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717532015023_2049694687",
+      "id": "paragraph_1717532015023_2049694687",
+      "dateCreated": "2024-06-04 20:13:35.023",
+      "dateStarted": "2024-06-04 20:51:50.800",
+      "dateFinished": "2024-06-04 20:51:50.806",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// quels sont les features les plus importantes?\n\n\nval featureNames \u003d Array(\"pickup location\", \"trip_distance\", \"year\", \"month\", \"weekday\", \"hour\")\nval importances \u003d rfModel.featureImportances\n\n// Associer les importances avec leurs noms\n//val featureNames \u003d Array(\"age\", \"income\")\nval featureImportances \u003d featureNames.zip(importances.toArray)\n\n// Afficher les importances des caractéristiques\nfeatureImportances.foreach { case (feature, importance) \u003d\u003e\n  println(s\"Feature: $feature, Importance: $importance\")\n}\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 21:06:00.961",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Feature: pickup location, Importance: 0.05943636817334195\nFeature: trip_distance, Importance: 0.8177879891411992\nFeature: year, Importance: 0.08571512689373316\nFeature: month, Importance: 0.006160906633939767\nFeature: weekday, Importance: 0.006800515222092238\nFeature: hour, Importance: 0.024099093935693885\nval \u001b[1m\u001b[34mfeatureNames\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m \u003d Array(pickup location, trip_distance, year, month, weekday, hour)\nval \u001b[1m\u001b[34mimportances\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.linalg.Vector\u001b[0m \u003d (6,[0,1,2,3,4,5],[0.05943636817334195,0.8177879891411992,0.08571512689373316,0.006160906633939767,0.006800515222092238,0.024099093935693885])\nval \u001b[1m\u001b[34mfeatureImportances\u001b[0m: \u001b[1m\u001b[32mArray[(String, Double)]\u001b[0m \u003d Array((pickup location,0.05943636817334195), (trip_distance,0.8177879891411992), (year,0.08571512689373316), (month,0.006160906633939767), (weekday,0.006800515222092238), (hour,0.024099093935693885))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717532339875_632358198",
+      "id": "paragraph_1717532339875_632358198",
+      "dateCreated": "2024-06-04 20:18:59.875",
+      "dateStarted": "2024-06-05 21:33:47.253",
+      "dateFinished": "2024-06-05 21:33:47.442",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nLa features la plus importante pour déterminer le pourboire est de **très loin** trip_distance, on peut tenter de trouver un moyen d\u0027estimer la distance du trajet en fonction des autres features qui peuvent être connues à l\u0027avance \n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-04 20:54:22.034",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eLa features la plus importante pour déterminer le pourboire est de \u003cstrong\u003etrès loin\u003c/strong\u003e trip_distance, on peut tenter de trouver un moyen d\u0026rsquo;estimer la distance du trajet en fonction des autres features qui peuvent être connues à l\u0026rsquo;avance\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717532717977_862320967",
+      "id": "paragraph_1717532717977_862320967",
+      "dateCreated": "2024-06-04 20:25:17.978",
+      "dateStarted": "2024-06-04 20:54:22.035",
+      "dateFinished": "2024-06-04 20:54:22.044",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Modèle pour estimer trip_distance\nval startTime \u003d System.nanoTime()\n\n\nval assemblerTripDist \u003d new VectorAssembler()\n  .setInputCols(Array(\"PULocationID\", \"year\", \"month\", \"weekday\", \"hour\"))\n  .setOutputCol(\"features\")\n\nval featureTripDistDF \u003d assemblerTripDist.transform(AugmentedLightDF)\n\n\nval featureIndexerTripDist \u003d new VectorIndexer()\n  .setInputCol(\"features\")\n  .setOutputCol(\"indexedFeatures\")\n  .setMaxCategories(25)\n  .fit(featureTripDistDF)\n\nval Array(trainingData, testData) \u003d featureTripDistDF.randomSplit(Array(0.8, 0.2))\n\n\nval rf \u003d new RandomForestRegressor()\n  .setLabelCol(\"trip_distance\")\n  .setFeaturesCol(\"indexedFeatures\")\n\nval pipelineTripDist \u003d new Pipeline()\n  .setStages(Array(featureIndexerTripDist, rf))\n\nval modelTripDist \u003d pipelineTripDist.fit(trainingData)\n\n// Faire des prédictions\nval predictionsTripDist \u003d modelTripDist.transform(testData)\n\npredictionsTripDist.select(\"prediction\", \"trip_distance\", \"features\").show(5)\n\n// Calculer le RMSE\nval evaluatorRMSE \u003d new RegressionEvaluator()\n  .setLabelCol(\"trip_distance\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"rmse\")\nval rmse \u003d evaluatorRMSE.evaluate(predictionsTripDist)\nprintln(s\"Root Mean Squared Error (RMSE) on test data \u003d $rmse\")\n\n// Calculer le MAE\nval evaluatorMAE \u003d new RegressionEvaluator()\n  .setLabelCol(\"trip_distance\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"mae\")\nval mae \u003d evaluatorMAE.evaluate(predictionsTripDist)\nprintln(s\"Mean Absolute Error (MAE) on test data \u003d $mae\")\n\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertir en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"Temps d\u0027exécution: ${formattedDuration}s\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 22:32:49.186",
+      "progress": 99,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+-------------+--------------------+\n|        prediction|trip_distance|            features|\n+------------------+-------------+--------------------+\n|2.8901745308445195|          0.4|[229.0,13.0,1.0,2...|\n| 2.975951944204016|         3.96|[186.0,13.0,1.0,2...|\n| 2.642695975622028|         3.27|[87.0,13.0,1.0,2....|\n|  7.54253336234382|          8.3|[138.0,13.0,1.0,2...|\n|  2.32878369513555|         0.46|[148.0,13.0,1.0,2...|\n+------------------+-------------+--------------------+\nonly showing top 5 rows\n\nRoot Mean Squared Error (RMSE) on test data \u003d 3.175460547792755\nMean Absolute Error (MAE) on test data \u003d 1.9528549898347065\nTemps d\u0027exécution: 767.4s\nval \u001b[1m\u001b[34mstartTime\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 4519956756854\nval \u001b[1m\u001b[34massemblerTripDist\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorAssembler\u001b[0m \u003d VectorAssembler: uid\u003dvecAssembler_e05a1c5c77ba, handleInvalid\u003derror, numInputCols\u003d5\nval \u001b[1m\u001b[34mfeatureTripDistDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 12 more fields]\nval \u001b[1m\u001b[34mfeatureIndexerTripDist\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorIndexerModel\u001b[0m \u003d VectorIndexerModel: uid\u003dvecIdx_f9a7ce197786, numFeatures\u003d5, handleInvalid\u003derror\nval \u001b[1m\u001b[34mtrainingData\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 12 more fields]\n...\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d55"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d56"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d57"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d58"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d59"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d60"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d61"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d62"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d63"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d64"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d65"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d66"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717507193003_192932372",
+      "id": "paragraph_1717507193003_192932372",
+      "dateCreated": "2024-06-04 13:19:53.003",
+      "dateStarted": "2024-06-05 21:35:54.074",
+      "dateFinished": "2024-06-05 21:48:41.614",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n//predictionsTripDist.show()\n// renommage de la colonne pour pouvoir utiliser prediction dans le deuxième modèle\nval predictionsTripDistRename \u003d predictionsTripDist.withColumnRenamed(\"prediction\", \"prediction_trip_dist\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 22:29:58.650",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "val \u001b[1m\u001b[34mpredictionsTripDistRename\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 14 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717535712860_1872312193",
+      "id": "paragraph_1717535712860_1872312193",
+      "dateCreated": "2024-06-04 21:15:12.860",
+      "dateStarted": "2024-06-05 21:48:41.624",
+      "dateFinished": "2024-06-05 21:48:41.718",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Modèle avec estimation de la trip_distance\n\n// Assembler les caractéristiques pour tip_amount\nval assemblerTipAmount \u003d new VectorAssembler()\n  .setInputCols(Array(\"PULocationID\", \"year\", \"month\", \"weekday\", \"hour\", \"prediction_trip_dist\"))\n  .setOutputCol(\"features_2\")\n\nval featureTipAmountDF \u003d assemblerTipAmount.transform(predictionsTripDistRename)\n\nval featureIndexerTipAmount \u003d new VectorIndexer()\n  .setInputCol(\"features_2\")\n  .setOutputCol(\"indexedFeatures_2\")\n  .setMaxCategories(25)\n  .fit(featureTipAmountDF)\n\nval Array(trainingDataTip, testDataTip) \u003d featureTipAmountDF.randomSplit(Array(0.8, 0.2))\n\n\nval rfTipAmount \u003d new RandomForestRegressor()\n  .setLabelCol(\"tip_amount\")\n  .setFeaturesCol(\"indexedFeatures_2\")\n\nval pipelineTipAmount \u003d new Pipeline()\n  .setStages(Array(featureIndexerTipAmount, rfTipAmount))\n\nval modelTipAmount \u003d pipelineTipAmount.fit(trainingDataTip)\n\n// Faire des prédictions pour tip_amount\nval predictionsTipAmount \u003d modelTipAmount.transform(testDataTip)\n\npredictionsTipAmount.select(\"prediction\", \"tip_amount\", \"features\").show(5)\n\n// Calculer le RMSE pour tip_amount\nval evaluatorRMSE \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"rmse\")\nval rmseTipAmount \u003d evaluatorRMSE.evaluate(predictionsTipAmount)\nprintln(s\"Root Mean Squared Error (RMSE) on test data for tip_amount \u003d $rmseTipAmount\")\n\n// Calculer le MAE pour tip_amount\nval evaluatorMAE \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"mae\")\nval maeTipAmount \u003d evaluatorMAE.evaluate(predictionsTipAmount)\nprintln(s\"Mean Absolute Error (MAE) on test data for tip_amount \u003d $maeTipAmount\")\n\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertir en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"Temps d\u0027exécution: ${formattedDuration}s\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 22:33:00.747",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+----------+--------------------+\n|        prediction|tip_amount|            features|\n+------------------+----------+--------------------+\n|1.5359705990791908|       0.0|[229.0,13.0,1.0,2...|\n| 1.494868940210431|       0.0|[148.0,13.0,1.0,2...|\n| 1.494868940210431|       1.5|[141.0,13.0,1.0,2...|\n| 1.569858718983541|       1.0|[48.0,13.0,1.0,2....|\n|4.0860326344698015|       6.0|[138.0,13.0,1.0,4...|\n+------------------+----------+--------------------+\nonly showing top 5 rows\n\nRoot Mean Squared Error (RMSE) on test data for tip_amount \u003d 2.287724465582935\nMean Absolute Error (MAE) on test data for tip_amount \u003d 1.4933411673908783\nTemps d\u0027exécution: 1549.7s\nval \u001b[1m\u001b[34massemblerTipAmount\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorAssembler\u001b[0m \u003d VectorAssembler: uid\u003dvecAssembler_3ac95b97d2f2, handleInvalid\u003derror, numInputCols\u003d6\nval \u001b[1m\u001b[34mfeatureTipAmountDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 15 more fields]\nval \u001b[1m\u001b[34mfeatureIndexerTipAmount\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorIndexerModel\u001b[0m \u003d VectorIndexerModel: uid\u003dvecIdx_d6f10422e602, numFeatures\u003d6, handleInvalid\u003derror\nval \u001b[1m\u001b[34mtrainingDataTip\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 15 more fields]\nval \u001b[1m\u001b[34mtestDataTip\u001b[0m: \u001b[1m\u001b[32morg.apache.spark....\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d67"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d68"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d69"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d70"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d71"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d72"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d73"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d74"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d75"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d76"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d77"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d78"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717536877436_743905689",
+      "id": "paragraph_1717536877436_743905689",
+      "dateCreated": "2024-06-04 21:34:37.436",
+      "dateStarted": "2024-06-05 21:48:41.747",
+      "dateFinished": "2024-06-05 22:01:43.906",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// modèle sans l\u0027estimation de trip_distance\n\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nimport org.apache.spark.ml.feature.VectorIndexer\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.regression.{RandomForestRegressionModel, RandomForestRegressor}\n\n\nval assemblerNoTripDist \u003d new VectorAssembler()\n  .setInputCols(Array(\"PULocationID\", \"year\", \"month\", \"weekday\", \"hour\"))\n  .setOutputCol(\"features\")\n\nval featureDFNoTripDist \u003d assemblerNoTripDist.transform(AugmentedLightDF)\n\n\nval featureIndexerNoTripDist \u003d new VectorIndexer()\n  .setInputCol(\"features\")\n  .setOutputCol(\"indexedFeatures\")\n  .setMaxCategories(24) \n  .fit(featureDFNoTripDist)\n  \nval Array(trainingDataNoTripDist, testDataNoTripDist) \u003d featureDFNoTripDist.randomSplit(Array(0.8, 0.2))\n\n\nval rf \u003d new RandomForestRegressor()\n  .setLabelCol(\"tip_amount\")\n  .setFeaturesCol(\"indexedFeatures\")\n\n\nval pipeline \u003d new Pipeline()\n  .setStages(Array(featureIndexerNoTripDist, rf))\n  \nval startTime \u003d System.nanoTime()\n\nval model \u003d pipeline.fit(trainingDataNoTripDist)\n\n\nval predictionsNoTripDist \u003d model.transform(testDataNoTripDist)\n\n\npredictionsNoTripDist.select(\"prediction\", \"tip_amount\", \"features\").show(20)\n\n\nval maeEvaluator \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"mae\")\n\n\nval evaluator \u003d new RegressionEvaluator()\n  .setLabelCol(\"tip_amount\")\n  .setPredictionCol(\"prediction\")\n  .setMetricName(\"rmse\")\n  \n\nval rmse \u003d evaluator.evaluate(predictionsNoTripDist)\nprintln(s\"Root Mean Squared Error (RMSE) on test data \u003d $rmse\")\n\nval mae \u003d maeEvaluator.evaluate(predictionsNoTripDist)\nprintln(s\"Mean Average Error (MAE) on test data \u003d $mae\")\n\nval duration \u003d (System.nanoTime() - startTime) / 1e9d // Convertit en secondes\nval formattedDuration \u003d f\"$duration%.1f\"\n\nprintln(s\"\\tTemps d\u0027exécution: ${formattedDuration}s\")\n\nval rfModel \u003d model.stages(1).asInstanceOf[RandomForestRegressionModel]\n//println(s\"Learned regression forest model:\\n ${rfModel.toDebugString}\")\n \n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 22:50:28.062",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+----------+--------------------+\n|        prediction|tip_amount|            features|\n+------------------+----------+--------------------+\n|1.4000712847042063|       2.9|[186.0,13.0,1.0,2...|\n|1.5714465326700682|       0.0|[141.0,13.0,1.0,2...|\n|1.5573995467729822|       0.0|[166.0,13.0,1.0,2...|\n| 1.441170716836749|       0.0|[230.0,13.0,1.0,2...|\n|1.6654613346198122|       0.0|[4.0,13.0,1.0,2.0...|\n|3.5457524476617217|      5.86|[138.0,13.0,1.0,2...|\n|1.4006980259083825|       0.0|[164.0,13.0,1.0,2...|\n|1.3640289316111294|       1.5|[141.0,13.0,1.0,2...|\n|1.4006980259083825|       0.0|[161.0,13.0,1.0,2...|\n|1.4374087470968742|       0.0|[230.0,13.0,1.0,2...|\n|  1.42237695053839|       0.0|[163.0,13.0,1.0,2...|\n| 1.579298005095168|       1.0|[48.0,13.0,1.0,2....|\n|3.0561321529744725|       1.4|[137.0,13.0,1.0,2...|\n| 1.494100184438957|       0.0|[148.0,13.0,1.0,2...|\n| 1.419203440206887|      1.35|[231.0,13.0,1.0,3...|\n| 1.419203440206887|       1.1|[230.0,13.0,1.0,3...|\n|1.5899226910275905|       0.0|[113.0,13.0,1.0,3...|\n|1.6326570609346085|       0.0|[68.0,13.0,1.0,3....|\n| 1.421993305829527|      2.08|[186.0,13.0,1.0,3...|\n|1.3975212705109126|      1.75|[238.0,13.0,1.0,3...|\n+------------------+----------+--------------------+\nonly showing top 20 rows\n\nRoot Mean Squared Error (RMSE) on test data \u003d 2.333682792356685\nMean Average Error (MAE) on test data \u003d 1.5427880025598737\n\tTemps d\u0027exécution: 482.2s\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nimport org.apache.spark.ml.feature.VectorIndexer\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.regression.{RandomForestRegressionModel, RandomForestRegressor}\nval \u001b[1m\u001b[34massemblerNoTripDist\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorAssembler\u001b[0m \u003d VectorAssembler: uid\u003dvecAssembler_0b87896edaa1, handleInvalid\u003derror, numInputCols\u003d5\nval \u001b[1m\u001b[34mfeatureDFNoTripDist\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz ... 12 more fields]\nval \u001b[1m\u001b[34mfeatureIndexerNoTripDist\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorIndexerModel\u001b[0m \u003d VectorIndexerModel: uid\u003dvecIdx_5fa9d50e7546, nu...\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d92"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d93"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d94"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d95"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d96"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d97"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d98"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d99"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d100"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d101"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d102"
+            },
+            {
+              "jobUrl": "http://ab98d444dcd5:4040/jobs/job?id\u003d103"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717626085104_2014795535",
+      "id": "paragraph_1717626085104_2014795535",
+      "dateCreated": "2024-06-05 22:21:25.104",
+      "dateStarted": "2024-06-05 22:50:28.071",
+      "dateFinished": "2024-06-05 22:59:50.335",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n### Résultats régression linéaire:\n\n**Les résultats avec seulement la pickup zone**:\nRoot Mean Squared Error (RMSE) on test data \u003d 2.5703141510822496\nMean Absolute Error (MAE) on test data \u003d 1.6269601840170642\n\n**Les résultats avec toutes les features**:\nRoot Mean Squared Error (RMSE) on test data \u003d 2.3503141510822496\nMean Absolute Error (MAE) on test data \u003d 1.5069601840170642\n\n\n### Résultats random forest:\n\n**Les résultats sans la trip_distance**:\n\nRoot Mean Squared Error (RMSE) on test data \u003d 2.333682792356685\nMean Absolute Error (MAE) on test data \u003d 1.5427880025598737\n\n**Les résultats avec la vraie trip_distance**:\nRoot Mean Squared Error (RMSE) on test data \u003d 2.1281352120421295\nMean Absolute Error (MAE) on test data \u003d 1.3991712183879392\n\n**Les résultats avec une estimation de la trip_distance**\nRoot Mean Squared Error (RMSE) on test data \u003d 2.287724465582935\nMean Absolute Error (MAE) on test data \u003d 1.4933411673908783\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 23:14:24.615",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eRésultats régression linéaire:\u003c/h3\u003e\n\u003cp\u003e\u003cstrong\u003eLes résultats avec seulement la pickup zone\u003c/strong\u003e:\u003cbr /\u003e\nRoot Mean Squared Error (RMSE) on test data \u003d 2.5703141510822496\u003cbr /\u003e\nMean Absolute Error (MAE) on test data \u003d 1.6269601840170642\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eLes résultats avec toutes les features\u003c/strong\u003e:\u003cbr /\u003e\nRoot Mean Squared Error (RMSE) on test data \u003d 2.3503141510822496\u003cbr /\u003e\nMean Absolute Error (MAE) on test data \u003d 1.5069601840170642\u003c/p\u003e\n\u003ch3\u003eRésultats random forest:\u003c/h3\u003e\n\u003cp\u003e\u003cstrong\u003eLes résultats sans la trip_distance\u003c/strong\u003e:\u003c/p\u003e\n\u003cp\u003eRoot Mean Squared Error (RMSE) on test data \u003d 2.333682792356685\u003cbr /\u003e\nMean Absolute Error (MAE) on test data \u003d 1.5427880025598737\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eLes résultats avec la vraie trip_distance\u003c/strong\u003e:\u003cbr /\u003e\nRoot Mean Squared Error (RMSE) on test data \u003d 2.1281352120421295\u003cbr /\u003e\nMean Absolute Error (MAE) on test data \u003d 1.3991712183879392\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eLes résultats avec une estimation de la trip_distance\u003c/strong\u003e\u003cbr /\u003e\nRoot Mean Squared Error (RMSE) on test data \u003d 2.287724465582935\u003cbr /\u003e\nMean Absolute Error (MAE) on test data \u003d 1.4933411673908783\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717537720563_1884730602",
+      "id": "paragraph_1717537720563_1884730602",
+      "dateCreated": "2024-06-04 21:48:40.563",
+      "dateStarted": "2024-06-05 23:14:24.615",
+      "dateFinished": "2024-06-05 23:14:24.626",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nOn constate que le modèle avec l\u0027estimation de la trip_distance est légèrement meilleur que le modèle qui ne l\u0027utilise pas. Le modèle peut permettre de déterminer quelle zones sont les plus profitable en fonction de la date et répond à la question initiale \n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 23:05:35.687",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eOn constate que le modèle avec l\u0026rsquo;estimation de la trip_distance est légèrement meilleur que le modèle qui ne l\u0026rsquo;utilise pas. Le modèle peut permettre de déterminer quelle zones sont les plus profitable en fonction de la date et répond à la question initiale\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717538729539_14538655",
+      "id": "paragraph_1717538729539_14538655",
+      "dateCreated": "2024-06-04 22:05:29.539",
+      "dateStarted": "2024-06-05 23:05:35.689",
+      "dateFinished": "2024-06-05 23:05:35.726",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-06-05 19:42:58.661",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1717616578661_2136453555",
+      "id": "paragraph_1717616578661_2136453555",
+      "dateCreated": "2024-06-05 19:42:58.661",
+      "status": "READY"
+    }
+  ],
+  "name": "MachineLearning",
+  "id": "2JYWBTG8J",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": false
+  }
+}
