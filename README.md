@@ -27,11 +27,15 @@ Pour tester les modèles, les métriques Rooted Mean Squared Error (RMSE) et Mea
 #### Résultats régression linéaire:
 
 **Les résultats avec seulement la pickup zone**:
+
 Root Mean Squared Error (RMSE) on test data = 2.5703141510822496
+
 Mean Absolute Error (MAE) on test data = 1.6269601840170642
 
 **Les résultats avec toutes les features**:
+
 Root Mean Squared Error (RMSE) on test data = 2.3503141510822496
+
 Mean Absolute Error (MAE) on test data = 1.5069601840170642
 
 
@@ -40,14 +44,19 @@ Mean Absolute Error (MAE) on test data = 1.5069601840170642
 **Les résultats sans la trip_distance**:
 
 Root Mean Squared Error (RMSE) on test data = 2.333682792356685
+
 Mean Absolute Error (MAE) on test data = 1.5427880025598737
 
 **Les résultats avec la vraie trip_distance**:
+
 Root Mean Squared Error (RMSE) on test data = 2.1281352120421295
+
 Mean Absolute Error (MAE) on test data = 1.3991712183879392
 
 **Les résultats avec une estimation de la trip_distance**
+
 Root Mean Squared Error (RMSE) on test data = 2.287724465582935
+
 Mean Absolute Error (MAE) on test data = 1.4933411673908783
 
 ### Améliorations
