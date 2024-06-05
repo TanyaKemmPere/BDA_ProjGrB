@@ -14,11 +14,13 @@ L’optimisation c’est faite a travers le choix des features ; la feature la p
 
 ### Tests et Evaluations
 2 modèles et 4 combinaisons de features ont été testés :
-•	Régression linéaire avec zone de récupération de client
-•	Régression linéaire avec distance de trajet, date et zone de récupération de client
-•	Random Forest avec date et zone de récupération de client
-•	Random Forest avec distance de trajet, date et zone de récupération de client 
-•	Random Forest avec estimation de la distance de trajet, date et zone de récupération de client
+
+-	Régression linéaire avec zone de récupération de client
+-	Régression linéaire avec distance de trajet, date et zone de récupération de client
+-	Random Forest avec date et zone de récupération de client
+-	Random Forest avec distance de trajet, date et zone de récupération de client 
+-	Random Forest avec estimation de la distance de trajet, date et zone de récupération de client
+
 Le but était de déterminer le meilleure algorithme et de savoir si le modèle avec l’estimation de la distance de trajet s’approchait des résultat obtenus avec la véritable distance
 Pour tester les modèles, les métriques Rooted Mean Squared Error (RMSE) et Mean Average Error (MAE) ont été utilisées. 
 
