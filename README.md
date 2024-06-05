@@ -1,4 +1,52 @@
 # BDA_ProjGrB
+## Phase 4
+**Le code pour la phase 4 se trouve dans MachineLearning.zpln mais pour l’utiliser, il faut au préalable avoir lancer le fichier Cleaning_yellow_taxi_trip.zpln pour avoir les données nettoyées au format parquet**
+Réponse à la question : « peut-on prédire le montant du pourboire ?»
+Le but était d’utiliser des features que les chauffeurs de taxi peuvent connaître en avance. Par exemple la date et la zone de récupération du client peuvent être connus ou choisi en avance, ce qui n’est pas le cas de la distance parcourue.
+### Algorithmes
+Pour parvenir à ce but, plusieurs algorithmes ont été utilisés. Un algorithme de régression linéaire pour créer une baseline. Puis Random Forest pour le modèle finale.
+### Optimisation
+L’optimisation c’est faite a travers le choix des features ; la feature la plus corrélée au montant du pourboire est la distance parcourues, mais cette valeur ne peut pas être connue à l’avance par le chauffeur de taxi. Un autre modèle a donc été entrainer pour déterminer cette valeur en fonction de la zone de de récupération du client et de la date (Année, mois, jour de la semaine et heure ont été extrait de la date et ajouté dans les features). Le modèle finale utilise  l’estimation de la distance du trajet de ce modèle ainsi que la zone de récupération du client et la date.
+### Tests et Evaluations
+2 modèles et 4 combinaisons de features ont été testés :
+•	Régression linéaire avec zone de récupération de client
+•	Régression linéaire avec distance de trajet, date et zone de récupération de client
+•	Random Forest avec date et zone de récupération de client
+•	Random Forest avec distance de trajet, date et zone de récupération de client 
+•	Random Forest avec estimation de la distance de trajet, date et zone de récupération de client
+Le but était de déterminer le meilleure algorithme et de savoir si le modèle avec l’estimation de la distance de trajet s’approchait des résultat obtenus avec la véritable distance
+Pour tester les modèles, les métriques Rooted Mean Squared Error (RMSE) et Mean Average Error (MAE) ont été utilisées. 
+### Résultats
+
+#### Résultats régression linéaire:
+
+**Les résultats avec seulement la pickup zone**:
+Root Mean Squared Error (RMSE) on test data = 2.5703141510822496
+Mean Absolute Error (MAE) on test data = 1.6269601840170642
+
+**Les résultats avec toutes les features**:
+Root Mean Squared Error (RMSE) on test data = 2.3503141510822496
+Mean Absolute Error (MAE) on test data = 1.5069601840170642
+
+
+#### Résultats random forest:
+
+**Les résultats sans la trip_distance**:
+
+Root Mean Squared Error (RMSE) on test data = 2.333682792356685
+Mean Absolute Error (MAE) on test data = 1.5427880025598737
+
+**Les résultats avec la vraie trip_distance**:
+Root Mean Squared Error (RMSE) on test data = 2.1281352120421295
+Mean Absolute Error (MAE) on test data = 1.3991712183879392
+
+**Les résultats avec une estimation de la trip_distance**
+Root Mean Squared Error (RMSE) on test data = 2.287724465582935
+Mean Absolute Error (MAE) on test data = 1.4933411673908783
+### Améliorations
+Pour rendre ce modèle plus utile en pratique, il pourrait être judicieux de faire quelques modifications de façon a ce que l’insertion d’une date et d’une heure donne la zone offrant le pourboire le plus élevé permettant ainsi au chauffeur de favoriser certaines zones.
+L’utilisation de coefficient pour les zone en fonction de leur nombre de kilomètre moyen aurait pu être une réponse moins couteuse en calcul que l’utilisation d’une random forest.
+
 ## Phase3
 ### Description of the features used and any pre-processing to extract additional features
 
