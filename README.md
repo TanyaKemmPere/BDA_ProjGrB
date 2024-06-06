@@ -1,6 +1,6 @@
 # BDA_ProjGrB
 ## Phase 4
-**Le code pour la phase 4 se trouve dans MachineLearning.zpln mais pour l’utiliser, il faut au préalable avoir lancer le fichier Cleaning_yellow_taxi_trip.zpln pour avoir les données nettoyées au format parquet**
+**Le code pour la phase 4 se trouve dans MachineLearning.zpln mais pour l’utiliser, il faut au préalable avoir lancer le fichier save_cleaning.zpln pour avoir les données nettoyées au format parquet**
 
 Réponse à la question : « peut-on prédire le montant du pourboire ?»
 
