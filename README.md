@@ -1,6 +1,6 @@
 # BDA_ProjGrB
 ## Phase 4
-**Le code pour la phase 4 se trouve dans MachineLearning.zpln mais pour l’utiliser, il faut au préalable avoir lancer le fichier Cleaning_yellow_taxi_trip.zpln pour avoir les données nettoyées au format parquet**
+**Le code pour la phase 4 se trouve dans MachineLearning.zpln mais pour l’utiliser, il faut au préalable avoir lancer le fichier save_cleaning.zpln pour avoir les données nettoyées au format parquet**
 
 Réponse à la question : « peut-on prédire le montant du pourboire ?»
 
@@ -64,6 +64,9 @@ Mean Absolute Error (MAE) on test data = 1.4933411673908783
 ### Améliorations
 Pour rendre ce modèle plus utile en pratique, il pourrait être judicieux de faire quelques modifications de façon a ce que l’insertion d’une date et d’une heure donne la zone offrant le pourboire le plus élevé permettant ainsi au chauffeur de favoriser certaines zones.
 L’utilisation de coefficient pour les zone en fonction de leur nombre de kilomètre moyen aurait pu être une réponse moins couteuse en calcul que l’utilisation d’une random forest.
+
+### Analyses statistiques (Covid-19)
+Dans le dossier de la phase 4, on retrouve également les analyses statistiques pour la question "Comment la pandémie de COVID-19 a-t-elle affecté l'industrie du taxi ?". Il faut regarder le fichier Covid_yellow_taxi_trip.zpln ainsi que LocationID_map.ipynb.
 
 ## Phase3
 ### Description of the features used and any pre-processing to extract additional features
